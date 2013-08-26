@@ -10,6 +10,8 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'squeel'
 gem 'sidekiq'
+gem 'carrierwave'
+gem 'rmagick'
 
 # Gems used only for assets and not required
 # in production environments by default.
