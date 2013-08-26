@@ -1,5 +1,7 @@
 TripcloudFinance::Application.routes.draw do
+
   resources :home, only: ['index']
+  resources :admin_users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
