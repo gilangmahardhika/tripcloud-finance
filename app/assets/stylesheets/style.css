@@ -35,7 +35,7 @@ Import fonts
 ***/
 
 /* load open sans font from local */
-@import url(../fonts/font.css);
+@import url(/fonts/font.css);
 
 /***
 Reset and overrides  
@@ -774,7 +774,7 @@ ul.page-sidebar-menu > li > ul.sub-menu  li > ul.sub-menu > li > a > i {
   margin-top: 8px;
   width: 13px;
   height: 13px;
-  background-image: url(../img/search-icon.png);
+  background-image: url(/img/search-icon.png);
   background-repeat: no-repeat;
 }
  
@@ -1385,29 +1385,29 @@ Portlets
 }
 
 .portlet > .portlet-title > .tools > a.remove {
-  background-image:url(../img/portlet-remove-icon.png);
+  background-image:url(/img/portlet-remove-icon.png);
   background-repeat: no-repeat;
   width: 11px;
 }
 
 .portlet > .portlet-title > .tools > a.config {
-  background-image:url(../img/portlet-config-icon.png);
+  background-image:url(/img/portlet-config-icon.png);
   background-repeat: no-repeat;
   width: 12px;
 }
 
 .portlet > .portlet-title > .tools > a.reload {
-  background-image:url(../img/portlet-reload-icon.png);
+  background-image:url(/img/portlet-reload-icon.png);
   width: 13px;
 }
 
 .portlet > .portlet-title > .tools > a.expand {
-  background-image:url(../img/portlet-expand-icon.png);
+  background-image:url(/img/portlet-expand-icon.png);
   width: 14px;
 }
 
 .portlet > .portlet-title > .tools > a.collapse {
-  background-image:url(../img/portlet-collapse-icon.png);
+  background-image:url(/img/portlet-collapse-icon.png);
   width: 14px;
 }
 
@@ -1587,27 +1587,27 @@ Box portlet
 
 .portlet.box > .portlet-title > .tools > a.remove, 
 .portlet.solid > .portlet-title > .tools > a.remove {
-  background-image:url(../img/portlet-remove-icon-white.png);
+  background-image:url(/img/portlet-remove-icon-white.png);
 }
 
 .portlet.box > .portlet-title > .tools > a.config,
 .portlet.solid > .portlet-title > .tools > a.config {
-  background-image:url(../img/portlet-config-icon-white.png);
+  background-image:url(/img/portlet-config-icon-white.png);
 }
 
 .portlet.box > .portlet-title > .tools > a.reload,
 .portlet.solid > .portlet-title > .tools > a.reload {
-  background-image:url(../img/portlet-reload-icon-white.png);
+  background-image:url(/img/portlet-reload-icon-white.png);
 }
 
 .portlet.box > .portlet-title > .tools > a.expand,
 .portlet.solid > .portlet-title > .tools > a.expand {
-  background-image:url(../img/portlet-expand-icon-white.png);
+  background-image:url(/img/portlet-expand-icon-white.png);
 }
 
 .portlet.box > .portlet-title > .tools > a.collapse,
 .portlet.solid > .portlet-title > .tools > a.collapse {
-  background-image:url(../img/portlet-collapse-icon-white.png);
+  background-image:url(/img/portlet-collapse-icon-white.png);
 }
 
 /* portlet buttons */
@@ -3528,7 +3528,7 @@ Styler Panel
 }
 
 .color-panel .icon-color {
-  background:#c9c9c9 url(../img/icon-color.png) center no-repeat !important;
+  background:#c9c9c9 url(/img/icon-color.png) center no-repeat !important;
 }
 
 .color-panel .icon-color:hover {
@@ -3537,7 +3537,7 @@ Styler Panel
 
 .color-panel .icon-color-close {
   display:none;
-  background:#3d3d3d url(../img/icon-color-close.png) center no-repeat !important;
+  background:#3d3d3d url(/img/icon-color-close.png) center no-repeat !important;
 }
 
 .color-panel .icon-color-close:hover {
@@ -4575,7 +4575,7 @@ jQuery UI Datepicker(new in v1.2.2)
 }
 
 .ui-widget-header .ui-icon {
-  background-image: url(../plugins/jquery-ui/images/ui-icons_888888_256x240.png) !important;
+  background-image: url(/plugins/jquery-ui/images/ui-icons_888888_256x240.png) !important;
 }
 
 .ui-widget-header .ui-datepicker-next,
@@ -4698,7 +4698,7 @@ jQuery UI Dialogs(new in v1.2.4)
   outline: none !important;
   border: 0 !important;
   box-shadow: none;
-  background: url(../img/hor-menu-search-close.png) no-repeat center;
+  background: url(/img/hor-menu-search-close.png) no-repeat center;
   margin-top: -12px !important;
 }
 
@@ -4714,7 +4714,7 @@ jQuery UI Dialogs(new in v1.2.4)
 }
 
 .ui-dialog.ui-dialog-blue .ui-dialog-titlebar-close {
-  background: url(../img/hor-menu-search-close-white.png) no-repeat center;
+  background: url(/img/hor-menu-search-close-white.png) no-repeat center;
 }
 
 .ui-dialog.ui-dialog-red .ui-dialog-titlebar {
@@ -4723,7 +4723,7 @@ jQuery UI Dialogs(new in v1.2.4)
 }
 
 .ui-dialog.ui-dialog-red .ui-dialog-titlebar-close {
-  background: url(../img/hor-menu-search-close-white.png) no-repeat center;
+  background: url(/img/hor-menu-search-close-white.png) no-repeat center;
 }
 
 .ui-dialog.ui-dialog-yellow .ui-dialog-titlebar {
@@ -4732,7 +4732,7 @@ jQuery UI Dialogs(new in v1.2.4)
 }
 
 .ui-dialog.ui-dialog-yellow .ui-dialog-titlebar-close {
-  background: url(../img/hor-menu-search-close-white.png) no-repeat center;
+  background: url(/img/hor-menu-search-close-white.png) no-repeat center;
 }
 
 .ui-dialog.ui-dialog-green .ui-dialog-titlebar {
@@ -4741,7 +4741,7 @@ jQuery UI Dialogs(new in v1.2.4)
 }
 
 .ui-dialog.ui-dialog-green .ui-dialog-titlebar-close {
-  background: url(../img/hor-menu-search-close-white.png) no-repeat center;
+  background: url(/img/hor-menu-search-close-white.png) no-repeat center;
 }
 
 .ui-dialog.ui-dialog-purple .ui-dialog-titlebar {
@@ -4750,7 +4750,7 @@ jQuery UI Dialogs(new in v1.2.4)
 }
 
 .ui-dialog.ui-dialog-purple .ui-dialog-titlebar-close {
-  background: url(../img/hor-menu-search-close-white.png) no-repeat center;
+  background: url(/img/hor-menu-search-close-white.png) no-repeat center;
 }
 
 .ui-dialog.ui-dialog-grey .ui-dialog-titlebar {
@@ -4759,7 +4759,7 @@ jQuery UI Dialogs(new in v1.2.4)
 }
 
 .ui-dialog.ui-dialog-grey .ui-dialog-titlebar-close {
-  background: url(../img/hor-menu-search-close-white.png) no-repeat center;
+  background: url(/img/hor-menu-search-close-white.png) no-repeat center;
 }
 /*dialog title bg colors*/
 
@@ -4905,7 +4905,7 @@ Horezantal Menu(new in v1.2)
     display: inline-block;
     padding: 11px 22px 11px 22px !important;
     cursor: pointer;
-    background: url(../img/hor-menu-search.png) no-repeat center;
+    background: url(/img/hor-menu-search.png) no-repeat center;
 }
 
 .header .hor-menu .hor-menu-search-form-toggler:hover {
@@ -4914,7 +4914,7 @@ Horezantal Menu(new in v1.2)
 }
 
 .header .hor-menu .hor-menu-search-form-toggler.hide {
-   background: #101010 url(../img/hor-menu-search-close.png) no-repeat center;
+   background: #101010 url(/img/hor-menu-search-close.png) no-repeat center;
 }
 
 .header .hor-menu a.hor-menu-search-form-toggler-close {
@@ -4937,7 +4937,7 @@ Horezantal Menu(new in v1.2)
   height: 32px;
   width: 10px;
   display: inline-block;
-  background: #2d2d2d url(../img/search-icon.png) no-repeat center;
+  background: #2d2d2d url(/img/search-icon.png) no-repeat center;
 }
 
 .header .hor-menu .search-form .btn:hover {
@@ -5187,35 +5187,35 @@ Social Icons(new in v1.2.2)
   opacity: 1;
 }
 
-.social-icons .amazon {background: url(../img/social/amazon.png) no-repeat;}
-.social-icons .behance {background: url(../img/social/behance.png) no-repeat;}
-.social-icons .blogger {background: url(../img/social/blogger.png) no-repeat;}
-.social-icons .deviantart {background: url(../img/social/deviantart.png) no-repeat;}
-.social-icons .dribbble {background: url(../img/social/dribbble.png) no-repeat;}
-.social-icons .dropbox {background: url(../img/social/dropbox.png) no-repeat;}
-.social-icons .evernote {background: url(../img/social/evernote.png) no-repeat;}
-.social-icons .facebook {background: url(../img/social/facebook.png) no-repeat;}
-.social-icons .forrst {background: url(../img/social/forrst.png) no-repeat;}
-.social-icons .github {background: url(../img/social/github.png) no-repeat;}
-.social-icons .googleplus {background: url(../img/social/googleplus.png) no-repeat;}
-.social-icons .jolicloud {background: url(../img/social/jolicloud.png) no-repeat;}
-.social-icons .last-fm {background: url(../img/social/last-fm.png) no-repeat;}
-.social-icons .linkedin {background: url(../img/social/linkedin.png) no-repeat;}
-.social-icons .picasa {background: url(../img/social/picasa.png) no-repeat;}
-.social-icons .pintrest {background: url(../img/social/pintrest.png) no-repeat;}
-.social-icons .rss {background: url(../img/social/rss.png) no-repeat;}
-.social-icons .skype {background: url(../img/social/skype.png) no-repeat;}
-.social-icons .spotify {background: url(../img/social/spotify.png) no-repeat;}
-.social-icons .stumbleupon {background: url(../img/social/stumbleupon.png) no-repeat;}
-.social-icons .tumblr {background: url(../img/social/tumblr.png) no-repeat;}
-.social-icons .twitter {background: url(../img/social/twitter.png) no-repeat;}
-.social-icons .vimeo {background: url(../img/social/vimeo.png) no-repeat;}
-.social-icons .wordpress {background: url(../img/social/wordpress.png) no-repeat;}
-.social-icons .xing {background: url(../img/social/xing.png) no-repeat;}
-.social-icons .yahoo {background: url(../img/social/yahoo.png) no-repeat;}
-.social-icons .youtube {background: url(../img/social/youtube.png) no-repeat;}
-.social-icons .vk {background: url(../img/social/vk.png) no-repeat;}
-.social-icons .instagram {background: url(../img/social/instagram.png) no-repeat;}
+.social-icons .amazon {background: url(/img/social/amazon.png) no-repeat;}
+.social-icons .behance {background: url(/img/social/behance.png) no-repeat;}
+.social-icons .blogger {background: url(/img/social/blogger.png) no-repeat;}
+.social-icons .deviantart {background: url(/img/social/deviantart.png) no-repeat;}
+.social-icons .dribbble {background: url(/img/social/dribbble.png) no-repeat;}
+.social-icons .dropbox {background: url(/img/social/dropbox.png) no-repeat;}
+.social-icons .evernote {background: url(/img/social/evernote.png) no-repeat;}
+.social-icons .facebook {background: url(/img/social/facebook.png) no-repeat;}
+.social-icons .forrst {background: url(/img/social/forrst.png) no-repeat;}
+.social-icons .github {background: url(/img/social/github.png) no-repeat;}
+.social-icons .googleplus {background: url(/img/social/googleplus.png) no-repeat;}
+.social-icons .jolicloud {background: url(/img/social/jolicloud.png) no-repeat;}
+.social-icons .last-fm {background: url(/img/social/last-fm.png) no-repeat;}
+.social-icons .linkedin {background: url(/img/social/linkedin.png) no-repeat;}
+.social-icons .picasa {background: url(/img/social/picasa.png) no-repeat;}
+.social-icons .pintrest {background: url(/img/social/pintrest.png) no-repeat;}
+.social-icons .rss {background: url(/img/social/rss.png) no-repeat;}
+.social-icons .skype {background: url(/img/social/skype.png) no-repeat;}
+.social-icons .spotify {background: url(/img/social/spotify.png) no-repeat;}
+.social-icons .stumbleupon {background: url(/img/social/stumbleupon.png) no-repeat;}
+.social-icons .tumblr {background: url(/img/social/tumblr.png) no-repeat;}
+.social-icons .twitter {background: url(/img/social/twitter.png) no-repeat;}
+.social-icons .vimeo {background: url(/img/social/vimeo.png) no-repeat;}
+.social-icons .wordpress {background: url(/img/social/wordpress.png) no-repeat;}
+.social-icons .xing {background: url(/img/social/xing.png) no-repeat;}
+.social-icons .yahoo {background: url(/img/social/yahoo.png) no-repeat;}
+.social-icons .youtube {background: url(/img/social/youtube.png) no-repeat;}
+.social-icons .vk {background: url(/img/social/vk.png) no-repeat;}
+.social-icons .instagram {background: url(/img/social/instagram.png) no-repeat;}
 
 
 /***
