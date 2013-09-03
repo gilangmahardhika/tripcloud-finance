@@ -5,10 +5,14 @@
 <!-- BEGIN HEAD -->
 <head>
 	<meta charset="utf-8" />
-	<title>Metronic | Login Options - Login Form 2</title>
+	<title>
+		TripClouds Finance App
+		<%= if content_for?(:title); "| #{yield(:title)}"; end; %>
+	</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<%= csrf_meta_tags %>
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	<%= stylesheet_link_tag "application" %>
 	<%= yield(:assets) if content_for?(:assets) %>

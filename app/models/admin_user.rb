@@ -19,4 +19,8 @@ class AdminUser < ActiveRecord::Base
   def self.login(params)
     user = where{((username == params[:username]) | (email == params[:username])) & (active == true)}.first
   end
+
+  def print_name
+    self.name
+  end
 end

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 	layout "login/login"
   def index
+  	@title = "Login"
   end
 
   def login

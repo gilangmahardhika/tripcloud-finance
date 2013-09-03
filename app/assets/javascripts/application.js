@@ -22,3 +22,4 @@
 //= require ./plugins/jquery.blockui.min.js
 //= require ./plugins/jquery.cookie.min.js
 //= require ./plugins/uniform/jquery.uniform.min.js 
+//= require ./scripts/app.js

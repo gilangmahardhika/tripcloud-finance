@@ -4,12 +4,13 @@
 	<%= simple_form_for :admin_user, url: login_home_index_path, html: { class: "form-vertical login-form" } do |f| %>
 	<form class="" action="index.html" method="post">
 		<h3 class="form-title">Login to your account</h3>
+		<%= render 'layouts/shared/notifications' %>
 		<div class="alert alert-error hide">
 			<button class="close" data-dismiss="alert"></button>
-			<span>Enter any username and password.</span>
+			<span>Enter any username/email and password.</span>
 		</div>
 		<%= f.input :username, as: :login_username, wrapper: "login_username",
-			input_html: { class: "m-wrap placeholder-no-fix", autocomplete: "off", placeholder: "Username" }, 
+			input_html: { class: "m-wrap placeholder-no-fix", autocomplete: "off", placeholder: "Username / email" }, 
 			label: false, 
 			label_html: {class: "control-label visible-ie8 visible-ie9"}
 		%>
@@ -58,5 +59,9 @@
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
 <%= content_for(:assets) do %>
-<%= stylesheet_link_tag "home" %>
+	<%= stylesheet_link_tag "home" %>
+<% end %>
+
+<%= content_for(:title) do %>
+	<%= @title %>
 <% end %>
