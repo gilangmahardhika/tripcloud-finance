@@ -1,8 +1,15 @@
 TripcloudFinance::Application.routes.draw do
 
   root to: 'home#index'
-  resources :home, only: ['index']
+  resources :home do
+    collection do
+      post 'login'
+      get 'logout'
+      delete 'logout'
+    end
+  end
   resources :admin_users
+  resources :dashboard
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -18,17 +25,7 @@ TripcloudFinance::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  
 
   # Sample resource route with sub-resources:
   #   resources :products do

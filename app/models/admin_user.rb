@@ -15,4 +15,8 @@ class AdminUser < ActiveRecord::Base
 
   scope :user_active, lambda { where(active: true) }
   scope :user_not_active, lambda { where(active: false) }
+
+  def self.login(params)
+    user = where{((username == params[:username]) | (email == params[:username])) & (active == true)}.first
+  end
 end
