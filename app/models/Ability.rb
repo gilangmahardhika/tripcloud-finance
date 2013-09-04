@@ -1,8 +1,8 @@
 class Ability
-	include Cancan::Ability
+	include CanCan::Ability
 
 	def initialize(usr)
-		@usr = usr || AdminUser.new
+		@user = usr || AdminUser.new
 		if @user.role == "admin"
 			can :manage, :all
 		end

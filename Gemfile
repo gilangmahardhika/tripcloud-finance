@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -12,8 +12,9 @@ gem 'squeel'
 gem 'sidekiq'
 gem 'carrierwave'
 gem 'rmagick'
-
+gem 'private_pub'
 gem 'cancan'
+gem "breadcrumbs_on_rails", :git => "git@github.com:gilangmahardhika/breadcrumbs_on_rails.git"
 
 # Gems used only for assets and not required
 # in production environments by default.

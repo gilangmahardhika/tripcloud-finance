@@ -23,4 +23,12 @@ class AdminUser < ActiveRecord::Base
   def print_name
     self.name
   end
+
+  def print_active
+    if self.active == true
+      '<span class="label label-success">Active</span>'.html_safe
+    else
+      '<span class="label label-danger">Not Active</span>'.html_safe
+    end
+  end
 end

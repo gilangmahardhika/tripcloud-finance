@@ -12,13 +12,19 @@
 				</form>
 				<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			</li>
-			<li class="active">
-				<a href="index.html">
-				Dashboard
-				<span class="selected"></span>
-				</a>
+			<li <%= 'class=active' if controller.controller_name == "dashboard" %>>
+				<%= link_to dashboard_index_path do %>
+					Dashboard
+					<%= raw '<span class="selected"></span>' if controller.controller_name == "dashboard" %>
+				<% end %>
 			</li>
-			<li>
+			<li <%= "class=active" if controller.controller_name == "admin_users" %>>
+				<%= link_to admin_users_path do %>
+					Admin User
+					<%= raw('<span class="selected"></span>') if controller.controller_name == "admin_users" %>
+				<% end %>
+			</li>
+			<!-- <li>
 				<a data-hover="dropdown" data-close-others="true" href="">
 				Sections
 				<span class="arrow"></span>     
@@ -31,7 +37,7 @@
 					<li><a href="#">Section 5</a></li>
 				</ul>
 				<b class="caret-out"></b>                        
-			</li>
+			</li> -->
 			<li>
 				<span class="hor-menu-search-form-toggler">&nbsp;</span>
 				<div class="search-form hidden-phone hidden-tablet">
