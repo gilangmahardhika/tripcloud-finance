@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :check_active_user, only: [:index]
 	layout "login/login"
   def index
   	@title = "Login"
@@ -21,12 +22,18 @@ class HomeController < ApplicationController
 
   def logout
   	session[:admin_user_id] = nil
-  	redirect_to home_index_url, notice: "Logout successfull"
+  	redirect_to root_url, notice: "Logout successfull"
   end
 
   private
   def authentication_fail
   	flash[:error] = "Login failed"
   	redirect_to home_index_url
+  end
+
+  def check_active_user
+    if current_user && current_user.role != nil && current_user.active == true
+      redirect_to dashboard_index_url
+    end
   end
 end
