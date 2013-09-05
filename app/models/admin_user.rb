@@ -1,5 +1,5 @@
 class AdminUser < ActiveRecord::Base
-  attr_accessible :active, :email, :name, :password_digest, :phone, :role, :username, :password
+  attr_accessible :active, :email, :name, :password_digest, :phone, :role, :username, :password, :password_confirmation
 
   has_secure_password
 
@@ -8,10 +8,11 @@ class AdminUser < ActiveRecord::Base
   validates_presence_of :password
   validates_presence_of :email
   validates_presence_of :phone
-  validates_presence_of :active
 
   validates_uniqueness_of :username
   validates_uniqueness_of :email
+
+  validates_confirmation_of :password, on: :create
 
   scope :user_active, lambda { where(active: true) }
   scope :user_not_active, lambda { where(active: false) }

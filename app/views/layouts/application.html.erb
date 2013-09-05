@@ -10,6 +10,7 @@
 	<meta content="" name="author" />
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= if content_for?(:form_assets); yield(:form_assets); end; %>
 	<%= csrf_meta_tags %>
 	<title>
 		TripClouds Finance App
@@ -73,11 +74,12 @@
 		</div>
 	</div>
 	<!-- END FOOTER -->
-	<%= javascript_include_tag "application" %>
-	<script src="assets/scripts/app.js"></script>      
+	<%= javascript_include_tag "application" %> 
+	<%= if content_for?(:form_js); yield(:form_js); end; %> 
 	<script>
 		jQuery(document).ready(function() {    
 		   App.init();
+		   <%= if content_for?(:form_script); yield(:form_script); end; %> 
 		});
 	</script>	
 	<!-- END JAVASCRIPTS -->

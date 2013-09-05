@@ -23,13 +23,14 @@ class AdminUsersController < ApplicationController
   end
 
   def create
+    add_breadcrumb "Add new", new_admin_user_path
   	@admin_user = AdminUser.new(params[:admin_user])
 
   	if @admin_user.save
   		redirect_to @admin_user, notice: "Successfully create admin user"
   	else
-  		render 'new'
-      add_breadcrumb "Add new", new_admin_user_path
+  		render action: 'new'
+      
   	end
   end
 
