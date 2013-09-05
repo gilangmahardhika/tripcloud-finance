@@ -5,6 +5,7 @@
 	<%= f.input :password, input_html: { class: "span6 m-wrap" } %>
 	<%= f.input :password_confirmation, input_html: { class: "span6 m-wrap" } %>
 	<%= f.input :phone, label: "Phone number", input_html: { class: "span4 m-wrap" } %>
+	<%= f.input :role, as: :select, collection: [["Admin", "admin"],["Finance", "finance"]], prompt: "Select role" %>
 	<%= f.input :active, as: :boolean, label: false, inline_label: "Active" %>
 	<div class="form-actions">
 		<%= f.button :submit, "Submit", class: "btn blue" %>
