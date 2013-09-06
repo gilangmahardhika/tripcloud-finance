@@ -6,4 +6,8 @@ class Airline < ActiveRecord::Base
   validates_uniqueness_of :code
 
   mount_uploader :logo, AirlineLogoUploader
+
+  def get_logo(version)
+  	self.logo.url(version)
+  end
 end
