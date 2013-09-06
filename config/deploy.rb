@@ -11,7 +11,7 @@ set :repository,  "git@github.com:gilangmahardhika/tripcloud-finance.git"
 
 
 set :scm, 'git'
-set :user, "gilang"
+set :user, "suitmedia"
 role :web, "202.67.10.2"
 role :app, "202.67.10.2"
 role :db,  "202.67.10.2", :primary => true
