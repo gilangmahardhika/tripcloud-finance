@@ -6,7 +6,8 @@ set :rvm_ruby_string, 'ruby-1.9.3-p374'
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 set :application, "tripclouds-finance-app"
-set :repository,  "git@bitbucket.org:gilangpm/tripclouds-finance.git"
+set :repository,  "git@bitbucket.org:gilangpm/tripcloud-finance.git"
+
 
 
 set :scm, 'git'
