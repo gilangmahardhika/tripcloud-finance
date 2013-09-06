@@ -30,51 +30,51 @@ ssh_options[:forward_agent] = true
 
 namespace :deploy do
 
-desc 'Re-establish database.yml'
-task :set_database_symlink do
-  run "ln -s /home/#{user}/wartel.database.yml #{current_release}/config/database.yml"
-  # run "cp -pf /home/suitmedia/wartel.database.yml #{current_path}/config/database.yml"
-end
+	desc 'Re-establish database.yml'
+	task :set_database_symlink do
+	  run "ln -s /home/#{user}/wartel.database.yml #{current_release}/config/database.yml"
+	  # run "cp -pf /home/suitmedia/wartel.database.yml #{current_path}/config/database.yml"
+	end
 
-desc 'run bundle install'
-task :install_bundle do
-  run "cd #{current_path} && bundle install"
-end
+	desc 'run bundle install'
+	task :install_bundle do
+	  run "cd #{current_path} && bundle install"
+	end
 
-desc 'run the migration'
-task :migrate do
-  run "cd #{current_path} && bundle exec rake db:create RAILS_ENV=production --trace"
-  run "cd #{current_path} && bundle exec rake db:migrate RAILS_ENV=production --trace"
-end
+	desc 'run the migration'
+	task :migrate do
+	  run "cd #{current_path} && bundle exec rake db:create RAILS_ENV=production --trace"
+	  run "cd #{current_path} && bundle exec rake db:migrate RAILS_ENV=production --trace"
+	end
 
-desc 'symlink upload folder'
-task :symlink_uploads do
-  run "rm -rf #{release_path}/public/uploads} && ln -nfs #{shared_path}/uploads  #{release_path}/public/uploads"
-end
+	desc 'symlink upload folder'
+	task :symlink_uploads do
+	  run "rm -rf #{release_path}/public/uploads} && ln -nfs #{shared_path}/uploads  #{release_path}/public/uploads"
+	end
 
-desc "create uploads folder"
-task :create_uploads_folder do
-  run "mkdir #{shared_path}/uploads"
-  run "chmod 777 -R #{shared_path}/uploads"
-end
+	desc "create uploads folder"
+	task :create_uploads_folder do
+	  run "mkdir #{shared_path}/uploads"
+	  run "chmod 777 -R #{shared_path}/uploads"
+	end
 
 
-task :restart, :roles => :app, :except => { :no_release => true } do
-  run "cd #{release_path} && bundle exec passenger stop -p 8814"
-  run "cd #{release_path} && bundle exec passenger start -p 8814 -e production --daemon"
-  # run "touch #{current_path}/tmp/restart.txt"
-end
+	task :restart, :roles => :app, :except => { :no_release => true } do
+	  run "cd #{release_path} && bundle exec passenger stop -p 8814"
+	  run "cd #{release_path} && bundle exec passenger start -p 8814 -e production --daemon"
+	  # run "touch #{current_path}/tmp/restart.txt"
+	end
 
-task :start_server, :roles => :app, :except => { :no_release => true } do
-  # run "cd #{release_path} && bundle exec passenger stop -p 8814"
-  run "cd #{release_path} && bundle exec passenger start -p 8814 -e production --daemon"
-  # run "touch #{current_path}/tmp/restart.txt"
-end
+	task :start_server, :roles => :app, :except => { :no_release => true } do
+	  # run "cd #{release_path} && bundle exec passenger stop -p 8814"
+	  run "cd #{release_path} && bundle exec passenger start -p 8814 -e production --daemon"
+	  # run "touch #{current_path}/tmp/restart.txt"
+	end
 
-desc "drop DB"
-task :drop_db do
-  run "cd #{current_path} && bundle exec rake db:drop RAILS_ENV=production --trace"
-end
+	desc "drop DB"
+	task :drop_db do
+	  run "cd #{current_path} && bundle exec rake db:drop RAILS_ENV=production --trace"
+	end
 
 end
 
@@ -111,13 +111,14 @@ namespace :db do
         <<: *base
     EOF
 
-  run "mkdir -p #{shared_path}/config"
-  put db_config, "#{shared_path}/config/database.yml"
+	run "mkdir -p #{shared_path}/config"
+	put db_config, "#{shared_path}/config/database.yml"
 
-  desc "Make symlink for database yaml"
-  task :symlink do
-    run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
-  end
+		desc "Make symlink for database yaml"
+	end
+	task :symlink do
+    	run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
+  	end
 end
 
 before "deploy:setup", "db:configure"
