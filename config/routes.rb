@@ -8,6 +8,7 @@ TripcloudFinance::Application.routes.draw do
       delete 'logout'
     end
   end
+  resources :airlines
   resources :admin_users
   resources :dashboard
 

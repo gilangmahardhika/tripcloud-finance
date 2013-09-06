@@ -10,11 +10,13 @@ class AdminUsersController < ApplicationController
   def new
   	@admin_user = AdminUser.new
     add_breadcrumb "Add new", new_admin_user_path
+    @title = "Add Admin User"
   end
 
   def edit
   	@admin_user = AdminUser.find(params[:id])
     add_breadcrumb "Edit", edit_admin_user_path
+    @title = "Edit Admin User"
   end
 
   def show
@@ -27,21 +29,20 @@ class AdminUsersController < ApplicationController
   	@admin_user = AdminUser.new(params[:admin_user])
 
   	if @admin_user.save
-  		redirect_to @admin_user, notice: "Successfully create admin user"
+  		redirect_to edit_admin_user_path(@admin_user), notice: "Successfully create admin user"
   	else
   		render action: 'new'
-      
   	end
   end
 
   def update
+    add_breadcrumb "Edit", edit_admin_user_path
   	@admin_user = AdminUser.find(params[:id]) 
   	if @admin_user.update_attributes(params[:admin_user])
-  		redirect_to @admin_user, notice: "Successfully update admin user"
+  		redirect_to edit_admin_user_path(@admin_user), notice: "Successfully update admin user"
   	else
   		flash[:error] = "Failed to update admin user"
-  		render 'edit'
-      add_breadcrumb "Edit", edit_admin_user_path
+  		render action: 'edit'
   	end
   end
 
