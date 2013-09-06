@@ -11,9 +11,9 @@ set :keep_releases, 3
 
 set :scm, 'git'
 set :user, "suitmedia"
-role :web, "202.67.10.3"
-role :app, "202.67.10.3"
-role :db,  "202.67.10.3", :primary => true
+role :web, "202.67.10.2"
+role :app, "202.67.10.2"
+role :db,  "202.67.10.2", :primary => true
 # set :database_username, 'root'
 
 set :deploy_to, "/home/#{user}/tripclouds"
