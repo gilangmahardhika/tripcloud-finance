@@ -2,16 +2,16 @@ require "bundler/capistrano"
 require "rvm/capistrano"
 
 set :rvm_type, :system
-set :rvm_ruby_string, 'ruby-1.9.3-p374'
+set :rvm_ruby_string, 'ruby-1.9.3-p448'
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 set :application, "tripclouds-finance-app"
-set :repository,  "git@bitbucket.org:gilangpm/tripcloud-finance.git"
+set :repository,  "git@github.com:gilangmahardhika/tripcloud-finance.git"
 
 
 
 set :scm, 'git'
-set :user, "suitmedia"
+set :user, "gilang"
 role :web, "202.67.10.2"
 role :app, "202.67.10.2"
 role :db,  "202.67.10.2", :primary => true
