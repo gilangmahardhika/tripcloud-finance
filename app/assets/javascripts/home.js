@@ -10,6 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require plugins/jquery-validation/dist/jquery.validate.min
+
 //= require plugins/select2/select2.min
 //= require scripts/login
