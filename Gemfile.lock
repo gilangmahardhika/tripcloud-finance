@@ -65,6 +65,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     columnize (0.3.6)
+    commonjs (0.2.6)
     connection_pool (1.1.0)
     coolline (0.4.2)
     debug_inspector (0.0.2)
@@ -108,6 +109,11 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    less (2.3.2)
+      commonjs (~> 0.2.6)
+    less-rails (2.3.3)
+      actionpack (>= 3.1)
+      less (~> 2.3.1)
     libv8 (3.11.8.17)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -240,6 +246,7 @@ DEPENDENCIES
   jazz_hands
   jquery-rails
   kaminari
+  less-rails
   mysql2
   private_pub
   rails (= 3.2.14)
