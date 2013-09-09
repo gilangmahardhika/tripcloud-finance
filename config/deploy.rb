@@ -36,7 +36,7 @@ namespace :deploy do
 
   desc 'Re-establish database.yml'
   task :set_database_symlink do
-    run "ln -s /home/#{user}/wartel.database.yml #{current_release}/config/database.yml"
+    run "ln -s /home/#{user}/tripclouds.database.yml #{current_release}/config/database.yml"
     # run "cp -pf /home/suitmedia/wartel.database.yml #{current_path}/config/database.yml"
   end
 
@@ -64,9 +64,9 @@ namespace :deploy do
 
 
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "cd #{release_path} && bundle exec passenger stop -p 8814"
-    run "cd #{release_path} && bundle exec passenger start -p 8814 -e production --daemon"
-    # run "touch #{current_path}/tmp/restart.txt"
+    # run "cd #{release_path} && bundle exec passenger stop -p 8814"
+    # run "cd #{release_path} && bundle exec passenger start -p 8814 -e production --daemon"
+    run "touch #{current_path}/tmp/restart.txt"
   end
 
   task :start_server, :roles => :app, :except => { :no_release => true } do

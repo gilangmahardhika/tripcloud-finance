@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require plugins/jquery-migrate-1.2.1.min.js
 //= require plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js
-//= require plugins/bootstrap/js/bootstrap.min.js
 //= require plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js
 //= require plugins/excanvas.min.js
 //= require plugins/respond.min.js
