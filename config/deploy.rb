@@ -87,7 +87,7 @@ after  "deploy:update_code", "db:symlink"
 
 after "deploy", "deploy:cleanup"
 # after "deploy:set_database_symlink", "deploy:migrate"
-# before "deploy:assets:precompile", "deploy:set_database_symlink"
+before "deploy:assets:precompile", "db:symlink"
 before "deploy:assets:precompile", "deploy:assets:clean"
 before "deploy:migrate", "deploy:install_bundle"
 before "deploy:restart", "deploy:migrate"
