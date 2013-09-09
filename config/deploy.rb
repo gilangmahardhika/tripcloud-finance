@@ -11,7 +11,7 @@ set :use_sudo,      false
 set :keep_releases, 3
 
 set :rvm_type, :system
-set :rvm_ruby_string, 'ruby-1.9.3-p374'
+set :rvm_ruby_string, 'ruby-1.9.3-p194'
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
  
 # Git Settings
