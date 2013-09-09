@@ -12,14 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ./plugins/jquery-migrate-1.2.1.min.js
-//= require ./plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js
-//= require ./plugins/bootstrap/js/bootstrap.min.js
-//= require ./plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js
-//= require ./plugins/excanvas.min.js
-//= require ./plugins/respond.min.js
-//= require ./plugins/jquery-slimscroll/jquery.slimscroll.min.js
-//= require ./plugins/jquery.blockui.min.js
-//= require ./plugins/jquery.cookie.min.js
-//= require ./plugins/uniform/jquery.uniform.min.js 
-//= require ./scripts/app.js
+//= require plugins/jquery-migrate-1.2.1.min.js
+//= require plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js
+//= require plugins/bootstrap/js/bootstrap.min.js
+//= require plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js
+//= require plugins/excanvas.min.js
+//= require plugins/respond.min.js
+//= require plugins/jquery-slimscroll/jquery.slimscroll.min.js
+//= require plugins/jquery.blockui.min.js
+//= require plugins/jquery.cookie.min.js
+//= require plugins/uniform/jquery.uniform.min.js 
+//= require scripts/app.js
