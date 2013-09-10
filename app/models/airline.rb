@@ -5,6 +5,8 @@ class Airline < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :code
 
+  has_many :transactions
+
   mount_uploader :logo, AirlineLogoUploader
 
   def get_logo(version)
