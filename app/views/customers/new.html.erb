@@ -1,2 +1,21 @@
-<h1>Customers#new</h1>
-<p>Find me in app/views/customers/new.html.erb</p>
+<div class="portlet box yellow">
+	<div class="portlet-title">
+		<div class="caption"><i class="icon-reorder"></i><%= @title %></div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+	<div class="portlet-body form"><%= render 'form' %>
+		<% content_for(:form_assets) do %>
+			<%= stylesheet_link_tag "form" %>
+		<% end %>
+
+		<% content_for(:form_js) do %>
+			<%= javascript_include_tag "form" %>
+		<% end %>
+
+		<% content_for(:form_script) do %>
+			<%= "FormComponents.init();" %>
+		<% end %>
+	</div>
+</div>
