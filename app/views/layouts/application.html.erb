@@ -11,6 +11,7 @@
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= if content_for?(:form_assets); yield(:form_assets); end; %>
+	<%= if content_for?(:invoice); yield(:invoice); end; %>
 	<%= csrf_meta_tags %>
 	<title>
 		TripClouds Finance App

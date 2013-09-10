@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910072637) do
+ActiveRecord::Schema.define(:version => 20130910100805) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name"
@@ -62,6 +62,30 @@ ActiveRecord::Schema.define(:version => 20130910072637) do
 
   add_index "customers", ["company"], :name => "index_customers_on_company"
   add_index "customers", ["name"], :name => "index_customers_on_name"
+
+  create_table "paxes", :force => true do |t|
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "ticket_number"
+    t.string   "phone"
+    t.integer  "transaction_id"
+    t.string   "last_name"
+    t.string   "id_number"
+    t.string   "seat_class"
+    t.decimal  "nett_to_agent",  :precision => 10, :scale => 0
+    t.decimal  "publish_fare",   :precision => 10, :scale => 0
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  add_index "paxes", ["first_name"], :name => "index_paxes_on_first_name"
+  add_index "paxes", ["id_number"], :name => "index_paxes_on_id_number"
+  add_index "paxes", ["last_name"], :name => "index_paxes_on_last_name"
+  add_index "paxes", ["nett_to_agent"], :name => "index_paxes_on_nett_to_agent"
+  add_index "paxes", ["publish_fare"], :name => "index_paxes_on_publish_fare"
+  add_index "paxes", ["seat_class"], :name => "index_paxes_on_seat_class"
+  add_index "paxes", ["ticket_number"], :name => "index_paxes_on_ticket_number"
+  add_index "paxes", ["transaction_id"], :name => "index_paxes_on_transaction_id"
 
   create_table "transactions", :force => true do |t|
     t.integer  "customer_id"

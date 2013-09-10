@@ -40,19 +40,19 @@
 			<tbody>
 				<% @transactions.each do |transaction| %>
 					<tr>
-						<td data-title="Name"><%= transaction.name %></td>
+						<td data-title="Name"><%= transaction.customer.name %></td>
 						<td data-title="Booking Code"><%= transaction.booking_code %></td>
 						<td data-title="Airline"><%= transaction.airline.name %></td>
 						<td data-title="Departure"><%= transaction.departure.name %></td>
 						<td data-title="Arrival"><%= transaction.arrival.name %></td>
 						<td data-title="Actions">
-							<%= link_to edit_customer_path(customer), class: "btn mini purple" do %>
-								Show detail <i class="icon-edit"></i>
+							<%= link_to transaction_path(transaction), class: "btn mini blue-stripe" do %>
+								Show detail
 							<% end %>
-							<%= link_to edit_customer_path(customer), class: "btn mini purple" do %>
+							<%= link_to edit_transaction_path(transaction), class: "btn mini purple" do %>
 								Edit <i class="icon-edit"></i>
 							<% end %>
-							<%= link_to customer_path(customer), class: "btn mini black", method: :delete, confirm: "Are you sure?" do %>
+							<%= link_to transaction_path(transaction), class: "btn mini black", method: :delete, confirm: "Are you sure?" do %>
 								Delete <i class="icon-trash"></i>
 							<% end %>
 						</td>

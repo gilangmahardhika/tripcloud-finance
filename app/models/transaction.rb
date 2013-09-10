@@ -12,4 +12,6 @@ class Transaction < ActiveRecord::Base
  	belongs_to :airline
  	belongs_to :admin_user
  	belongs_to :customer
+
+ 	has_many :paxes
 end
