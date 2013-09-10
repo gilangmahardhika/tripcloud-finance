@@ -14,7 +14,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'private_pub'
 gem 'cancan'
-gem "breadcrumbs_on_rails", :git => "git@github.com:gilangmahardhika/breadcrumbs_on_rails.git"
+gem "breadcrumbs_on_rails"#, :git => "git@github.com:gilangmahardhika/breadcrumbs_on_rails.git"
 
 gem 'twitter-bootstrap-rails'
 

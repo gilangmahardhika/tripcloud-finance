@@ -11,6 +11,7 @@ TripcloudFinance::Application.routes.draw do
   resources :airlines
   resources :admin_users
   resources :dashboard
+  resources :cities
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
