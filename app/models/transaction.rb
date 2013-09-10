@@ -6,4 +6,10 @@ class Transaction < ActiveRecord::Base
 
 
   validates_presence_of :admin_user_id, :airline_id, :booking_code, :customer_id, :departure_id, :arrival_id, :issued_date, :nett_to_agent, :publish_fare, :time_limit
+
+ 	belongs_to :departure, class_name: "City"
+ 	belongs_to :arrival, class_name: "City"
+ 	belongs_to :airline
+ 	belongs_to :admin_user
+ 	belongs_to :customer
 end

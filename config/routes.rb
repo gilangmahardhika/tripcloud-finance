@@ -13,4 +13,5 @@ TripcloudFinance::Application.routes.draw do
   resources :cities
   resources :customers
   resources :invoices
+  resources :transactions
 end
