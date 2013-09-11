@@ -6,5 +6,4 @@ class AddEventNameAndRouteToTransactions < ActiveRecord::Migration
   	end
   	add_index :transactions, :event_name
   end
-  
 end

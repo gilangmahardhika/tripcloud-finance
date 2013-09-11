@@ -11,9 +11,10 @@
 			<div class="span3">
 				<h4>Client:</h4>
 				<ul class="unstyled">
-					<li><%= @transaction.customer.name %></li>
 					<li><%= @transaction.customer.company %></li>
+					<li><%= @transaction.customer.address %></li>
 					<li><%= @transaction.customer.phone %></li>
+					<li>Attn : <%= @transaction.customer.name_with_title %></li>
 				</ul>
 			</div>
 			<div class="span4 invoice-payment">
@@ -93,10 +94,10 @@
 			</div>
 			<div class="span8 invoice-block">
 				<ul class="unstyled amounts">
-					<li><strong>Sub - Total amount:</strong> IDR <%= @transaction.publish_fare %></li>
+					<li><strong>Sub - Total amount:</strong> IDR <%= number_with_delimiter(@transaction.publish_fare, delimiter: ".", separator: ",") %></li>
 					<li><strong>Discount:</strong> 0%</li>
 					<li><strong>VAT:</strong> -----</li>
-					<li><strong>Grand Total:</strong> IDR <%= @transaction.publish_fare %></li>
+					<li><strong>Grand Total:</strong> IDR <%= number_with_delimiter(@transaction.publish_fare, delimiter: ".", separator: ",") %></li>
 				</ul>
 				<br />
 				<a class="btn blue big hidden-print" onclick="javascript:window.print();">Print <i class="icon-print icon-big"></i></a>

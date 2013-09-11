@@ -6,10 +6,19 @@
 	<%= f.association :arrival %>
 	<%= f.input :booking_code, input_html: { class: "span3 m-wrap" } %>	
 	<%= f.association :airline %>
-	<%= f.input :issued_date, input_html: { class: "span2 m-wrap" } %>
+	<%= f.input :issued_date, wrapper_html: {class: "date input-append date-picker", :"data-date-format" => "yyyy-mm-dd", :"data-date-viewmode" => "years"}, wrapper: :append do %>
+		<%= f.input_field :issued_date, as: :string, class: "m-wrap m-ctrl-medium date-picker", size: 16  %>
+		<span class="add-on"><i class="icon-calendar"></i></span>
+	<% end %>
 	<%= f.input :time_limit, input_html: { class: "span2 m-wrap" } %>
-	<%= f.input :nett_to_agent, as: :string, input_html: { class: "span3 m-wrap" } %>	
-	<%= f.input :publish_fare, as: :string, input_html: { class: "span3 m-wrap" } %>	
+	<%= f.input :nett_to_agent, as: :string, input_html: { class: "span3 m-wrap" }, wrapper: :prepend do %>
+		<span class="add-on">IDR</span>
+		<%= f.input_field :nett_to_agent, class: "m-wrap" %>
+	<% end %>	
+	<%= f.input :publish_fare, as: :string, input_html: { class: "span3 m-wrap" }, wrapper: :prepend do %>
+		<span class="add-on">IDR</span>
+		<%= f.input_field :publish_fare, class: "m-wrap" %>
+	<% end %>	
 	<div class="form-actions">
 		<%= f.button :submit, "Submit", class: "btn blue" %>
 	</div>
