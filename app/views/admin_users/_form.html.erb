@@ -5,6 +5,14 @@
 	<%= f.input :password, input_html: { class: "span6 m-wrap" } %>
 	<%= f.input :password_confirmation, input_html: { class: "span6 m-wrap" } %>
 	<%= f.input :phone, label: "Phone number", input_html: { class: "span4 m-wrap" } %>
+	<%= f.input :avatar, as: :file %>
+	<% if @admin_user.present? %>
+		<div class="control-group">
+			<div class="controls">
+				<%= image_tag @admin_user.avatar.url(:mini_thumbnail) %>
+			</div>
+		</div>
+	<% end %>
 	<%= f.input :role, as: :select, collection: [["Admin", "admin"],["Finance", "finance"]], prompt: "Select role" %>
 	<%= f.input :active, as: :boolean, label: false, inline_label: "Active" %>
 	<div class="form-actions">

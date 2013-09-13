@@ -28,13 +28,6 @@
 					</li>
 					<li>
 						<a href="#">
-						<span class="label label-warning"><i class="icon-bell"></i></span>
-						Server #2 not responding.
-						<span class="time">22 mins</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
 						<span class="label label-info"><i class="icon-bullhorn"></i></span>
 						Application error.
 						<span class="time">40 mins</span>
@@ -48,22 +41,22 @@
 		</ul>
 	</li>
 	<!-- END NOTIFICATION DROPDOWN -->
-
 	<!-- BEGIN USER LOGIN DROPDOWN -->
 	<li class="dropdown user">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-		<img alt="" src="/img/avatar1_small.jpg" />
+		<% if current_user.avatar.present? %>
+			<%= image_tag current_user.avatar.url(:mini_thumbnail) %>
+		<% else %>
+			<img alt="" src="/img/avatar1_small.jpg" />
+		<% end %>
 		<span class="username"><%= current_user.print_name %></span>
 		<i class="icon-angle-down"></i>
 		</a>
 		<ul class="dropdown-menu">
 			<li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
-			<li><a href="page_calendar.html"><i class="icon-calendar"></i> My Calendar</a></li>
 			<li><a href="inbox.html"><i class="icon-envelope"></i> My Inbox <span class="badge badge-important">3</span></a></li>
-			<li><a href="#"><i class="icon-tasks"></i> My Tasks <span class="badge badge-success">8</span></a></li>
 			<li class="divider"></li>
 			<li><a href="javascript:;" id="trigger_fullscreen"><i class="icon-move"></i> Full Screen</a></li>
-			<li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
 			<li>
 				<%= link_to logout_home_index_path, mothod: :delete, confirm: "Are you sure?" do %>
 					<i class="icon-key"></i> Logout
@@ -71,7 +64,6 @@
 			</li>
 		</ul>
 	</li>
-	<!-- END USER LOGIN DROPDOWN -->
 	<!-- END USER LOGIN DROPDOWN -->
 </ul>
 <!-- END TOP NAVIGATION MENU --> 

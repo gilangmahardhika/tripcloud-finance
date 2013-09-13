@@ -1,5 +1,5 @@
 class City < ActiveRecord::Base
-  attr_accessible :code, :name
+  attr_accessible :code, :name, :airport_name, :country
 
   validates_presence_of :name
   validates_presence_of :code

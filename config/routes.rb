@@ -12,6 +12,10 @@ TripcloudFinance::Application.routes.draw do
   resources :dashboard
   resources :cities
   resources :customers
-  resources :invoices
+  resources :invoices do
+    collection do
+      post 'search_result'
+    end
+  end
   resources :transactions
 end

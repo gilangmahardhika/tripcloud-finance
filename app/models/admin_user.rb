@@ -1,5 +1,5 @@
 class AdminUser < ActiveRecord::Base
-  attr_accessible :active, :email, :name, :password_digest, :phone, :role, :username, :password, :password_confirmation
+  attr_accessible :active, :email, :name, :password_digest, :phone, :role, :username, :password, :password_confirmation, :avatar
 
   has_secure_password
 
@@ -14,6 +14,8 @@ class AdminUser < ActiveRecord::Base
   validates_uniqueness_of :email
 
   validates_confirmation_of :password, on: :create
+
+  mount_uploader :avatar, AvatarUploader
 
   scope :user_active, lambda { where(active: true) }
   scope :user_not_active, lambda { where(active: false) }
