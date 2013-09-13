@@ -6,7 +6,7 @@
 	<%= f.input :password_confirmation, input_html: { class: "span6 m-wrap" } %>
 	<%= f.input :phone, label: "Phone number", input_html: { class: "span4 m-wrap" } %>
 	<%= f.input :avatar, as: :file %>
-	<% if @admin_user.present? %>
+	<% if @admin_user.avatar.present? %>
 		<div class="control-group">
 			<div class="controls">
 				<%= image_tag @admin_user.avatar.url(:mini_thumbnail) %>
