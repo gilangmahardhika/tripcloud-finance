@@ -1,2 +1,40 @@
-<h1>Invoices#index</h1>
-<p>Find me in app/views/invoices/index.html.erb</p>
+<!-- BEGIN PAGE CONTENT-->
+<div class="row-fluid">
+	<div class="row-fluid">
+		<div class="span8 booking-search">
+			<form action="#">
+				<div class="clearfix margin-bottom-20">
+					<div class="control-group pull-left margin-right-20">
+						<label class="control-label">Check-in:</label>
+						<div class="controls">
+							<div class="input-append date date-picker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+								<input class="m-wrap m-ctrl-medium date-picker" size="16" type="text" value="12-02-2012" /><span class="add-on"><i class="icon-calendar"></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="control-group pull-left">
+						<label class="control-label">Check-out:</label>
+						<div class="controls">
+							<div class="input-append date date-picker" data-date="102/2012" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+								<input class="m-wrap m-ctrl-medium date-picker" size="16" type="text" value="02/2012" /><span class="add-on"><i class="icon-calendar"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="btn blue btn-block">SEARCH <i class="m-icon-swapright m-icon-white"></i></button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- END PAGE CONTENT-->
+<%= content_for(:search_style) do %>
+	<%= stylesheet_link_tag "search" %>
+<% end %>
+
+<%= content_for(:search_js) do %>
+	<%= javascript_include_tag "search" %>
+<% end %>
+
+<%= content_for(:search_config) do %>
+	<%= "Search.init();" %>
+<% end %>
