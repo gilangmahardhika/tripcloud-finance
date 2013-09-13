@@ -12,6 +12,7 @@
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= if content_for?(:form_assets); yield(:form_assets); end; %>
 	<%= if content_for?(:invoice); yield(:invoice); end; %>
+	<%= if content_for?(:data_table_style); yield(:data_table_style); end; %>
 	<%= csrf_meta_tags %>
 	<title>
 		TripClouds Finance App
@@ -77,10 +78,12 @@
 	<!-- END FOOTER -->
 	<%= javascript_include_tag "application" %> 
 	<%= if content_for?(:form_js); yield(:form_js); end; %> 
+	<%= if content_for?(:data_table_js); yield(:data_table_js); end; %> 
 	<script>
 		jQuery(document).ready(function() {    
 		   App.init();
 		   <%= if content_for?(:form_script); yield(:form_script); end; %> 
+		   <%= if content_for?(:data_table_config); yield(:data_table_config); end; %> 
 		});
 	</script>	
 	<!-- END JAVASCRIPTS -->

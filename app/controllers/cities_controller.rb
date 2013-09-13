@@ -2,7 +2,7 @@ class CitiesController < ApplicationController
 	helper_method :index_path
 	add_breadcrumb "City", :index_path
   def index
-  	@cities = City.order{[created_at.desc]}.page(params[:page]).per(15)
+  	@cities = City.order{[name.asc]}
   	@title = "Cities"
   end
 
