@@ -9,7 +9,7 @@ namespace :airports do
 				City.create do |city|
 					city.name = airport["city"]
 					city.airport_name = airport["name"]
-					city.country = airport["name"]
+					city.country = airport["country"]
 					city.code = airport["code"]
 				end
 			end

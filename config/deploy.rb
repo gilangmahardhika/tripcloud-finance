@@ -80,6 +80,11 @@ namespace :deploy do
     run "cd #{current_path} && bundle exec rake db:drop RAILS_ENV=production --trace"
   end
 
+  desc "migrate airports data"
+  task :migrate_airports_data do
+    run "cd #{current_path} && bundle exec rake airports:migrate RAILS_ENV=production --trace"
+  end
+
 end
 
 before "deploy:setup", "rvm:install_ruby"
