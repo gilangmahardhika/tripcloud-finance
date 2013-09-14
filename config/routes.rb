@@ -18,4 +18,5 @@ TripcloudFinance::Application.routes.draw do
     end
   end
   resources :transactions
+  resources :bank_accounts
 end
