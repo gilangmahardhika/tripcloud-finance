@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 42028bc06e72a848d297edc1467a969a7c9def57
+  specs:
+    nested_form (0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -247,6 +253,7 @@ DEPENDENCIES
   kaminari
   less-rails
   mysql2
+  nested_form!
   private_pub
   rails (= 3.2.14)
   rmagick

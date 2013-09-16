@@ -33,3 +33,4 @@
 //= require plugins/bootstrap-switch/static/js/bootstrap-switch
 //= require plugins/jquery-tags-input/jquery.tagsinput.min
 //= require scripts/form-components
+//= require jquery_nested_form

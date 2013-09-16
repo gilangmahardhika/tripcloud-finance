@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
   	add_breadcrumb "Add new", new_transaction_path
   	@title = "Add new"
   	@transaction = Transaction.new 
+    @transaction.paxes.build
   end
 
   def edit

@@ -5,7 +5,7 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab_1">
-			<%= simple_form_for @transaction, html: {class: "form-horizontal"} do |f| %>
+			<%= simple_nested_form_for @transaction, html: {class: "form-horizontal"} do |f| %>
 				<div class="row-fluid">
 					<div class="span4 ">
 						<%= f.input :company, input_html: {class: "m-wrap span12"} %>
@@ -24,6 +24,15 @@
 						<%= f.input :total_price, as: :string, label: "Total Price", input_html: {class: "m-wrap span12"} %>
 					</div>
 				</div>
+				<h3>Pax detail</h3>
+				<%= f.simple_fields_for :paxes do |pax_form| %>
+					<%= pax_form.input :title, as: :select, collection: ["Mr", "Mrs", "Ms"] %>
+				  <%= pax_form.input :first_name %>
+				  <%= pax_form.input :last_name %>
+				  <%= pax_form.input :phone %>
+				  <%= pax_form.link_to_remove "Remove this pax" %>
+				<% end %>
+				<p><%= f.link_to_add "Add a pax", :paxes %></p>
 				<div class="form-actions">
 					<%= f.button :submit, "Submit", class: "btn blue" %>
 				</div>
