@@ -1,4 +1,5 @@
 <%= simple_form_for @customer, html: { class: "form-horizontal"} do |f| %>
+	<%= f.input :customer_type, as: :select, collection: ["Corporate", "Personal"] %>
 	<%= f.input :title, as: :select, collection: ["Mr", "Mrs", "Ms"] %>
 	<%= f.input :name, input_html: { class: "span6 m-wrap" } %>
 	<%= f.input :company, input_html: { class: "span6 m-wrap" } %>	
