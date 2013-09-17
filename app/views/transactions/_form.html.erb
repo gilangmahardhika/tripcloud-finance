@@ -1,7 +1,7 @@
 <%= simple_nested_form_for @transaction, html: {class: "form-horizontal"} do |f| %>
 	<div class="row-fluid">
 		<div class="span4 ">
-			<%= f.input :transaction_type, as: :radio_buttons, collection: [["Personal", "personal"], ["Corporate", "corporate"]] %>
+			<%= f.input :transaction_type, as: :radio_buttons, collection: [["Personal", "personal"], ["Corporate", "corporate"]], checked: "personal" %>
 			<%= f.input :company, input_html: {class: "m-wrap span12"} %>
 			<%= f.input :customer_id, as: :string, label: "PIC", input_html: {class: "m-wrap span12"} %>
 			<%= f.input :event_name, as: :string, input_html: {class: "m-wrap span12"} %>
@@ -24,7 +24,7 @@
 	  <%= pax_form.input :first_name %>
 	  <%= pax_form.input :last_name %>
 	  <%= pax_form.input :phone %>
-	  <%= pax_form.input :route, as: :radio_buttons, collection: ["One way", "Return"] %>
+	  <%= pax_form.input :route, as: :radio_buttons, collection: ["One way", "Return"], checked: "One way" %>
 	  <%= pax_form.association :airline %>
 	  <%= pax_form.input :departure_date %>
 	  <%= pax_form.input :arrival_date %>
