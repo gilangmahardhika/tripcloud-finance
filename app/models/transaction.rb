@@ -8,8 +8,7 @@ class Transaction < ActiveRecord::Base
 
   validates_presence_of :admin_user_id, :booking_code, :customer_id, :time_limit
 
- 	belongs_to :departure, class_name: "City"
- 	belongs_to :arrival, class_name: "City"
+ 	validates_presence_of :event_name, :if => :transaction_type_corporate?
  	belongs_to :airline
  	belongs_to :admin_user
  	belongs_to :customer
@@ -17,5 +16,9 @@ class Transaction < ActiveRecord::Base
  	has_many :paxes, class_name: "Pax"
 
   accepts_nested_attributes_for :paxes
+
+  def transaction_type_corporate?
+  	transaction_type == "corporate"
+  end
 
 end

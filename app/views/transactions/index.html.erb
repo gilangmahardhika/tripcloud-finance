@@ -31,9 +31,6 @@
 				<tr>
 					<th>Customer Name</th>
 					<th>Booking Code</th>
-					<th>Airline</th>
-					<th>Departure</th>
-					<th>Arrival</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -42,9 +39,6 @@
 					<tr>
 						<td data-title="Name"><%= transaction.customer.name %></td>
 						<td data-title="Booking Code"><%= transaction.booking_code %></td>
-						<td data-title="Airline"><%= transaction.airline.name %></td>
-						<td data-title="Departure"><%= transaction.departure.name %></td>
-						<td data-title="Arrival"><%= transaction.arrival.name %></td>
 						<td data-title="Actions">
 							<%= link_to transaction_path(transaction), class: "btn mini blue-stripe" do %>
 								Show detail

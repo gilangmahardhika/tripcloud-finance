@@ -4,4 +4,7 @@ class Pax < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
 
   belongs_to :transaction
+
+  belongs_to :departure, class_name: "City"
+  belongs_to :arrival, class_name: "City"
 end

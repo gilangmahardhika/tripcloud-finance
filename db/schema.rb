@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916065232) do
+ActiveRecord::Schema.define(:version => 20130917073015) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(:version => 20130916065232) do
     t.decimal  "publish_fare",   :precision => 10, :scale => 0
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
+    t.integer  "departure_id"
+    t.integer  "arrival_id"
   end
 
   add_index "paxes", ["first_name"], :name => "index_paxes_on_first_name"
@@ -109,15 +111,16 @@ ActiveRecord::Schema.define(:version => 20130916065232) do
     t.datetime "time_limit"
     t.date     "issued_date"
     t.integer  "admin_user_id"
-    t.decimal  "nett_to_agent", :precision => 10, :scale => 0
-    t.decimal  "publish_fare",  :precision => 10, :scale => 0
+    t.decimal  "nett_to_agent",    :precision => 10, :scale => 0
+    t.decimal  "publish_fare",     :precision => 10, :scale => 0
     t.integer  "airline_id"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.string   "event_name"
     t.string   "route"
     t.string   "flight_code"
-    t.decimal  "total_price",   :precision => 10, :scale => 0
+    t.decimal  "total_price",      :precision => 10, :scale => 0
+    t.string   "transaction_type"
   end
 
   add_index "transactions", ["admin_user_id"], :name => "index_transactions_on_admin_user_id"
@@ -131,5 +134,6 @@ ActiveRecord::Schema.define(:version => 20130916065232) do
   add_index "transactions", ["nett_to_agent"], :name => "index_transactions_on_nett_to_agent"
   add_index "transactions", ["publish_fare"], :name => "index_transactions_on_publish_fare"
   add_index "transactions", ["time_limit"], :name => "index_transactions_on_time_limit"
+  add_index "transactions", ["transaction_type"], :name => "index_transactions_on_transaction_type"
 
 end
