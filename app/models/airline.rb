@@ -6,6 +6,7 @@ class Airline < ActiveRecord::Base
   validates_uniqueness_of :code
 
   has_many :transactions
+  has_many :paxes
 
   mount_uploader :logo, AirlineLogoUploader
 
