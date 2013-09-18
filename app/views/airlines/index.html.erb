@@ -40,7 +40,7 @@
 					<tr>
 						<td data-title="Name"><%= airline.name %></td>
 						<td data-title="Code"><%= airline.code %></td>
-						<td data-title="Logo"><%= image_tag airline.get_logo("mini_thumbnail") %></td>
+						<td data-title="Logo"><%= image_tag airline.get_logo("mini_thumbnail") if airline.logo.present? %></td>
 						<td data-title="Actions">
 							<%= link_to edit_airline_path(airline), class: "btn mini purple" do %>
 								Edit <i class="icon-edit"></i>
