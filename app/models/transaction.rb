@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-  attr_accessible :admin_user_id, :issued_date, :time_limit, :route, :company, :total_price, :paxes_attributes, :personal, :to_name, :email, :address
+  attr_accessible :admin_user_id, :issued_date, :time_limit, :route, :company, :total_price, :paxes_attributes, :personal, :to_name, :email, :address, :booking_code, :publish_fare
 
   # belongs_to :customer
   # belongs_to :airline
