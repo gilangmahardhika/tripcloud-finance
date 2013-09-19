@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 	helper_method :index_path
   def index
   	@title = "Transactions"
-  	@transactions = Transaction.includes(:departure, :arrival, :customer, :admin_user, :airline).order{[created_at.desc]}.page(params[:page]).per(15)
+  	@transactions = Transaction.includes(:admin_user).order{[created_at.desc]}.page(params[:page]).per(15)
   end
 
   def new

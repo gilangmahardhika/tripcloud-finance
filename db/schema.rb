@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130919080810) do
+ActiveRecord::Schema.define(:version => 20130919163303) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name"
@@ -129,6 +129,12 @@ ActiveRecord::Schema.define(:version => 20130919080810) do
     t.string   "flight_code"
     t.decimal  "total_price",      :precision => 10, :scale => 0
     t.string   "transaction_type"
+    t.string   "to_name"
+    t.string   "email"
+    t.string   "company"
+    t.text     "address"
+    t.boolean  "personal"
+    t.string   "invoice_number"
   end
 
   add_index "transactions", ["admin_user_id"], :name => "index_transactions_on_admin_user_id"
@@ -137,11 +143,14 @@ ActiveRecord::Schema.define(:version => 20130919080810) do
   add_index "transactions", ["booking_code"], :name => "index_transactions_on_booking_code"
   add_index "transactions", ["customer_id"], :name => "index_transactions_on_customer_id"
   add_index "transactions", ["departure_id"], :name => "index_transactions_on_departure_id"
+  add_index "transactions", ["email"], :name => "index_transactions_on_email"
   add_index "transactions", ["event_name"], :name => "index_transactions_on_event_name"
+  add_index "transactions", ["invoice_number"], :name => "index_transactions_on_invoice_number"
   add_index "transactions", ["issued_date"], :name => "index_transactions_on_issued_date"
   add_index "transactions", ["nett_to_agent"], :name => "index_transactions_on_nett_to_agent"
   add_index "transactions", ["publish_fare"], :name => "index_transactions_on_publish_fare"
   add_index "transactions", ["time_limit"], :name => "index_transactions_on_time_limit"
+  add_index "transactions", ["to_name"], :name => "index_transactions_on_to_name"
   add_index "transactions", ["transaction_type"], :name => "index_transactions_on_transaction_type"
 
 end
