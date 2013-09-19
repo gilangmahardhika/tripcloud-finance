@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130917075858) do
+ActiveRecord::Schema.define(:version => 20130919080810) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name"
@@ -96,8 +96,12 @@ ActiveRecord::Schema.define(:version => 20130917075858) do
     t.datetime "departure_date"
     t.datetime "arrival_date"
     t.integer  "airline_id"
+    t.string   "middle_name"
+    t.string   "booking_code"
+    t.string   "flight_number"
   end
 
+  add_index "paxes", ["booking_code"], :name => "index_paxes_on_booking_code"
   add_index "paxes", ["first_name"], :name => "index_paxes_on_first_name"
   add_index "paxes", ["id_number"], :name => "index_paxes_on_id_number"
   add_index "paxes", ["last_name"], :name => "index_paxes_on_last_name"

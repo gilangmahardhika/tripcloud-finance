@@ -1,4 +1,79 @@
 <%= simple_nested_form_for @transaction, html: {class: "form-horizontal"} do |f| %>
+	<h3 class="form-section">Passenger Details</h3>
+	<%= f.simple_fields_for :paxes do |pax_form| %>
+		<div class="row-fluid">
+			<div class="span12">
+				<%= pax_form.input :title, as: :select, collection: ["Mr", "Mrs", "Ms"], input_html: {class: "m-wrap span3"} %>
+			</div>
+		</div>
+		<div>
+		<div class="row-fluid">
+			<div class="span4">
+		  	<%= pax_form.input :first_name, input_html: {class: "m-wrap span12"} %>
+			</div>
+			<div class="span4">
+				<%= pax_form.input :middle_name, input_html: {class: "m-wrap span12"} %>
+			</div>
+			<div class="span4">
+		  	<%= pax_form.input :last_name, input_html: {class: "m-wrap span12"} %>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<%= pax_form.input :route, as: :radio_buttons, collection: ["One way", "Return"], checked: "One way", input_html: {class: "m-wrap span12"} %>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<%= pax_form.association :departure, label: "Origin", input_html: {class: "m-wrap span12"} %>
+			</div>
+			<div class="span6">
+				<%= pax_form.association :arrival, label: "Destination", input_html: {class: "m-wrap span12"} %>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6">
+				<%= pax_form.input :departure_date, wrapper_html: {class: "date input-append date-picker", :"data-date-format" => "yyyy-mm-dd", :"data-date-viewmode" => "years"}, wrapper: :append do %>
+					<%= pax_form.input_field :departure_date, label: "Due Date", as: :string, class: "m-wrap span12 date-picker", size: 12  %>
+					<span class="add-on"><i class="icon-calendar"></i></span>
+				<% end %>
+			</div>
+			<div class="span6">
+				<%= pax_form.input :arrival_date, wrapper_html: {class: "date input-append date-picker", :"data-date-format" => "yyyy-mm-dd", :"data-date-viewmode" => "years"}, wrapper: :append do %>
+					<%= pax_form.input_field :arrival_date, label: "Due Date", as: :string, class: "m-wrap span12 date-picker", size: 15  %>
+					<span class="add-on"><i class="icon-calendar"></i></span>
+				<% end %>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+			 		<%= pax_form.input :flight_number, label: "Flight Number", input_html: {class: "m-wrap span12"} %>
+			 	</div>
+				<div class="span6">
+		 	 		<%= pax_form.association :airline, input_html: {class: "m-wrap span12"} %> 
+		 		</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					<%= f.input :booking_code, as: :string, label: "Book Reference", input_html: {class: "m-wrap span12"} %>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					<%= f.input :publish_fare, as: :string, label: "Total Price", input_html: {class: "m-wrap span12"} %>
+				</div>
+			</div>
+		 <div class="row-fluid">
+		 	<div class="span12">
+		 		<div class="control-group">
+		 			<div class="controls">
+		  			<%= pax_form.link_to_remove "<i class='icon icon-trash'></i>Remove this pax".html_safe, class: "btn mini black" %>
+		  		</div>
+		  	</div>
+		 	</div>
+		</div>
+	<% end %>
+	<p><%= f.link_to_add "Add a pax", :paxes %></p>
+	<h3 class="form-section">Booking Information</h3>
 	<div class="row-fluid">
 		<div class="span4 ">
 			<%= f.input :transaction_type, as: :radio_buttons, collection: [["Personal", "personal"], ["Corporate", "corporate"]], checked: "personal" %>
@@ -19,23 +94,7 @@
 		</div>
 	</div>
 	<h3>Pax detail</h3>
-	<%= f.simple_fields_for :paxes do |pax_form| %>
-		<%= pax_form.input :title, as: :select, collection: ["Mr", "Mrs", "Ms"] %>
-	  <%= pax_form.input :first_name %>
-	  <%= pax_form.input :last_name %>
-	  <%= pax_form.input :phone %>
-	  <%= pax_form.input :route, as: :radio_buttons, collection: ["One way", "Return"], checked: "One way" %>
-	  <%= pax_form.association :airline %>
-	  <%= pax_form.input :departure_date %>
-	  <%= pax_form.input :arrival_date %>
-	  <%= pax_form.association :departure %>
-	  <%= pax_form.association :arrival %>
-	  <%= pax_form.input :id_number, label: "Passport Number" %>
-	  <%= f.input :nett_to_agent, as: :string, label: "Price" %>
-	  <%= f.input :publish_fare, as: :string, label: "Price Publish" %>
-	  <%= pax_form.link_to_remove "Remove this pax" %>
-	<% end %>
-	<p><%= f.link_to_add "Add a pax", :paxes %></p>
+	
 	<div class="form-actions">
 		<%= f.button :submit, "Submit", class: "btn blue" %>
 	</div>
