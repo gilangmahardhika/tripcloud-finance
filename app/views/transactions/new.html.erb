@@ -5,17 +5,18 @@
 			<a href="javascript:;" class="collapse"></a>
 		</div>
 	</div>
-	<div class="portlet-body form"><%= render 'form' %>
-		<% content_for(:form_assets) do %>
-			<%= stylesheet_link_tag "form" %>
-		<% end %>
-
-		<% content_for(:form_js) do %>
-			<%= javascript_include_tag "form" %>
-		<% end %>
-
-		<% content_for(:form_script) do %>
-			<%= "FormComponents.init();" %>
-		<% end %>
+	<div class="portlet-body form">
+		<%= render 'form' %>
 	</div>
 </div>
+<% content_for(:form_assets) do %>
+	<%= stylesheet_link_tag "form" %>
+<% end %>
+
+<% content_for(:form_js) do %>
+	<%= javascript_include_tag "form" %>
+<% end %>
+
+<% content_for(:form_script) do %>
+	<%= "FormComponents.init();" %>
+<% end %>
