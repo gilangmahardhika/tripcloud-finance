@@ -31,6 +31,7 @@
 				<tr>
 					<th>Invoice Number</th>
 					<th>Total Pax</th>
+					<th>Grand Price</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -38,7 +39,10 @@
 				<% @transactions.each do |transaction| %>
 					<tr>
 						<td data-title="Name"><%= transaction.invoice_number %></td>
-						<td data-title="Booking Code"><%= transaction.booking_code %></td>
+						<td data-title="Booking Code"><%= transaction.paxes.count %></td>
+						<td data-title="Grand Price">
+							IDR <%= number_with_delimiter(transaction.total_price, delimiter: ".", separator: ",") %>
+						</td>
 						<td data-title="Actions">
 							<%= link_to transaction_path(transaction), class: "btn mini blue-stripe" do %>
 								Show detail

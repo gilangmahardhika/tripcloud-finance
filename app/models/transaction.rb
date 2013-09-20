@@ -11,7 +11,7 @@ class Transaction < ActiveRecord::Base
  	belongs_to :admin_user
  	# belongs_to :customer
 
- 	has_many :paxes, class_name: "Pax"
+ 	has_many :paxes, class_name: "Pax", dependent: :destroy
 
   accepts_nested_attributes_for :paxes
 

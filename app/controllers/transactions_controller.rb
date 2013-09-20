@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 	helper_method :index_path
   def index
   	@title = "Transactions"
-  	@transactions = Transaction.includes(:admin_user).order{[created_at.desc]}.page(params[:page]).per(15)
+  	@transactions = Transaction.includes(:admin_user, :paxes).order{[created_at.desc]}.page(params[:page]).per(15)
   end
 
   def new
@@ -21,8 +21,8 @@ class TransactionsController < ApplicationController
 
   def show
   	@title = "Transaction"
-  	@transaction = Transaction.includes(:customer, :departure, :admin_user, :arrival, :airline).find(params[:id])
-  	add_breadcrumb @transaction.customer.name, transaction_path(@transaction)
+  	@transaction = Transaction.includes(:admin_user, :paxes).find(params[:id])
+  	add_breadcrumb "Show", transaction_path(@transaction)
   end
 
   def create
@@ -30,8 +30,8 @@ class TransactionsController < ApplicationController
   	@transaction = Transaction.new(params[:transaction])
   	@title = "Add new"
   	add_breadcrumb "Add new", new_transaction_path
-  	if @transaction.save
-  		redirect_to transaction_path(@transaction), notice: "Successfully create transaction"
+  	if @transaction.save!
+  		redirect_to transactions_path, notice: "Successfully create transaction"
   	else
   		render action: "new"
   	end
