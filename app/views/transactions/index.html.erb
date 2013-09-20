@@ -29,15 +29,15 @@
 		<table class="table-bordered table-striped table-condensed cf">
 			<thead class="cf">
 				<tr>
-					<th>Customer Name</th>
-					<th>Booking Code</th>
+					<th>Invoice Number</th>
+					<th>Total Pax</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @transactions.each do |transaction| %>
 					<tr>
-						<td data-title="Name"><%= transaction.customer.name %></td>
+						<td data-title="Name"><%= transaction.invoice_number %></td>
 						<td data-title="Booking Code"><%= transaction.booking_code %></td>
 						<td data-title="Actions">
 							<%= link_to transaction_path(transaction), class: "btn mini blue-stripe" do %>

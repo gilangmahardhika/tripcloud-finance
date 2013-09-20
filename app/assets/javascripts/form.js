@@ -34,3 +34,4 @@
 //= require plugins/jquery-tags-input/jquery.tagsinput.min
 //= require scripts/form-components
 //= require jquery_nested_form
+//= require form-price
