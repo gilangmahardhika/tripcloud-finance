@@ -3,7 +3,7 @@
 		<div class="row-fluid invoice-logo">
 			<div class="span6 invoice-logo-space">LOGO</div>
 			<div class="span6">
-				<p>#5652256 / <%= @transaction.issued_date %></p>
+				<p>#5652256 / <%= @transaction.issued_date_formatted %></p>
 			</div>
 		</div>
 		<hr />
@@ -20,8 +20,8 @@
 				<h4>Client:</h4>
 				<ul class="unstyled">
 					<li>Invoice No. : <%= @transaction.invoice_number %></li>
-					<li>Date : <%= @transaction.issued_date %></li>
-					<li>Due Date : <%= @transaction.time_limit %></li>
+					<li>Date : <%= @transaction.issued_date_formatted %></li>
+					<li>Due Date : <%= @transaction.time_limit_formatted %></li>
 				</ul>
 			</div>
 		</div>
@@ -51,8 +51,8 @@
 							<td class="hidden-480"><%= pax.route %></td>
 							<td class="hidden-480"><%= pax.departure.name %></td>
 							<td class="hidden-480"><%= pax.arrival.name %></td>
-							<td class="hidden-480"><%= pax.departure_date %></td>
-							<td class="hidden-480"><%= pax.arrival_date %></td>
+							<td class="hidden-480"><%= pax.departure_date_formatted %></td>
+							<td class="hidden-480"><%= pax.arrival_date_formatted %></td>
 							<td class="hidden-480"><%= pax.flight_number %></td>
 							<td class="hidden-480"><%= pax.airline.name %></td>
 							<td class="hidden-480"><%= pax.booking_code %></td>

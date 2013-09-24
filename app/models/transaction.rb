@@ -23,4 +23,12 @@ class Transaction < ActiveRecord::Base
   	personal == true
   end
 
+  def issued_date_formatted
+    self.issued_date.strftime("%d %b %Y")
+  end
+
+  def time_limit_formatted
+    self.time_limit.strftime("%d %b %Y")
+  end
+
 end

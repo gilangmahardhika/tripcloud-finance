@@ -21,4 +21,12 @@ class Pax < ActiveRecord::Base
   def full_name
     "#{self.title}. #{self.first_name} #{self.middle_name} #{self.last_name}"
   end
+
+  def arrival_date_formatted
+    self.arrival_date.strftime("%d %b %Y") unless self.arrival_date.nil?
+  end
+
+  def departure_date_formatted
+    self.departure_date.strftime("%d %b %Y") 
+  end
 end
