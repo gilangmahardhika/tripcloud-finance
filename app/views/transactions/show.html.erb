@@ -1,31 +1,27 @@
 	<!-- BEGIN PAGE CONTENT-->
 	<div class="row-fluid invoice">
 		<div class="row-fluid invoice-logo">
-			<div class="span6 invoice-logo-space"><img src="/img/invoice/walmart.png" alt="" /> </div>
+			<div class="span6 invoice-logo-space">LOGO</div>
 			<div class="span6">
-				<p>#5652256 / 28 Feb 2013 <span class="muted">Consectetuer adipiscing elit</span></p>
+				<p>#5652256 / <%= @transaction.issued_date %></p>
 			</div>
 		</div>
 		<hr />
 		<div class="row-fluid">
-			<div class="span3">
+			<div class="span6">
 				<h4>Client:</h4>
 				<ul class="unstyled">
-					<li><%= @transaction.customer.company %></li>
-					<li><%= @transaction.customer.address %></li>
-					<li><%= @transaction.customer.phone %></li>
-					<li>Attn : <%= @transaction.customer.name_with_title %></li>
+					<li><%= @transaction.company %></li>
+					<li><%= @transaction.address %></li>
+					<li>Attn : <%= @transaction.to_name %></li>
 				</ul>
 			</div>
-			<div class="span4 invoice-payment">
-				<h4>Payment Details:</h4>
+			<div class="span6">
+				<h4>Client:</h4>
 				<ul class="unstyled">
-					<li><strong>V.A.T Reg #:</strong> 542554(DEMO)78</li>
-					<li><strong>Account Name:</strong> FoodMaster Ltd</li>
-					<li><strong>SWIFT code:</strong> 45454DEMO545DEMO</li>
-					<li><strong>V.A.T Reg #:</strong> 542554(DEMO)78</li>
-					<li><strong>Account Name:</strong> FoodMaster Ltd</li>
-					<li><strong>SWIFT code:</strong> 45454DEMO545DEMO</li>
+					<li>Invoice No. : <%= @transaction.invoice_number %></li>
+					<li>Date : <%= @transaction.issued_date %></li>
+					<li>Due Date : <%= @transaction.time_limit %></li>
 				</ul>
 			</div>
 		</div>
@@ -34,74 +30,63 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Item</th>
-						<th class="hidden-480">Description</th>
-						<th class="hidden-480">Quantity</th>
-						<th class="hidden-480">Unit Cost</th>
+						<th>Name</th>
+						<th class="hidden-480">Route</th>
+						<th class="hidden-480">Origin</th>
+						<th class="hidden-480">Destination</th>
+						<th class="hidden-480">Departure</th>
+						<th class="hidden-480">Arrival</th>
+						<th class="hidden-480">Flight No.</th>
+						<th class="hidden-480">Airline</th>
+						<th class="hidden-480">Book Ref.</th>
 						<th>Total</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Hardware</td>
-						<td class="hidden-480">Server hardware purchase</td>
-						<td class="hidden-480">32</td>
-						<td class="hidden-480">$75</td>
-						<td>$2152</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Furniture</td>
-						<td class="hidden-480">Office furniture purchase</td>
-						<td class="hidden-480">15</td>
-						<td class="hidden-480">$169</td>
-						<td>$4169</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Foods</td>
-						<td class="hidden-480">Company Anual Dinner Catering</td>
-						<td class="hidden-480">69</td>
-						<td class="hidden-480">$49</td>
-						<td>$1260</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Software</td>
-						<td class="hidden-480">Payment for Jan 2013</td>
-						<td class="hidden-480">149</td>
-						<td class="hidden-480">$12</td>
-						<td>$866</td>
-					</tr>
+					<% no = 1 %>
+					<% @transaction.paxes.each do |pax| %>
+						<tr>
+							<td><%= no %></td>
+							<td><%= pax.full_name %></td>
+							<td class="hidden-480"><%= pax.route %></td>
+							<td class="hidden-480"><%= pax.departure.name %></td>
+							<td class="hidden-480"><%= pax.arrival.name %></td>
+							<td class="hidden-480"><%= pax.departure_date %></td>
+							<td class="hidden-480"><%= pax.arrival_date %></td>
+							<td class="hidden-480"><%= pax.flight_number %></td>
+							<td class="hidden-480"><%= pax.airline.name %></td>
+							<td class="hidden-480"><%= pax.booking_code %></td>
+							<td class="hidden-480"><%= pax.publish_fare %></td>
+						</tr>
+						<% no == no + 1 %>
+					<% end %>
 				</tbody>
 			</table>
 		</div>
 		<div class="row-fluid">
 			<div class="span4">
 				<div class="well">
-					<address>
-						<strong>Loop, Inc.</strong><br />
-						795 Park Ave, Suite 120<br />
-						San Francisco, CA 94107<br />
-						<abbr title="Phone">P:</abbr> (234) 145-1810
-					</address>
-					<address>
-						<strong>Full Name</strong><br />
-						<a href="mailto:#">first.last@email.com</a>
-					</address>
+					<p>Please Remit Payment transfer to :</p>
+					<% @bank_accounts.each do |bank_account| %>
+						<p>
+							<%= bank_account.bank_name %><br>
+							<strong>Account Number : <%= bank_account.account_number %></strong><br>
+							<strong>Account Name : <%= bank_account.account_name %></strong><br>
+						</p>
+					<% end %>
 				</div>
 			</div>
 			<div class="span8 invoice-block">
 				<ul class="unstyled amounts">
-					<li><strong>Sub - Total amount:</strong> IDR <%= number_with_delimiter(@transaction.publish_fare, delimiter: ".", separator: ",") %></li>
+					<li><strong>Sub - Total amount:</strong> IDR <%= number_with_delimiter(@transaction.total_price, delimiter: ".", separator: ",") %></li>
 					<li><strong>Discount:</strong> 0%</li>
 					<li><strong>VAT:</strong> -----</li>
-					<li><strong>Grand Total:</strong> IDR <%= number_with_delimiter(@transaction.publish_fare, delimiter: ".", separator: ",") %></li>
+					<li><strong>Grand Total:</strong> IDR <%= number_with_delimiter(@transaction.total_price, delimiter: ".", separator: ",") %></li>
 				</ul>
 				<br />
 				<a class="btn blue big hidden-print" onclick="javascript:window.print();">Print <i class="icon-print icon-big"></i></a>
-				<a class="btn green big hidden-print">Submit Your Invoice <i class="m-icon-big-swapright m-icon-white"></i></a>
+				<a class="btn green big hidden-print">Download <i class="m-icon-big-swapright m-icon-white"></i></a>
+				<a class="btn green big hidden-print">Send Email <i class="m-icon-big-swapright m-icon-white"></i></a>
 			</div>
 		</div>
 	</div>

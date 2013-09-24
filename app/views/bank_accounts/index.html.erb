@@ -1,2 +1,52 @@
-<h1>BankAccounts#index</h1>
-<p>Find me in app/views/bank_accounts/index.html.erb</p>
+<!-- BEGIN SAMPLE TABLE PORTLET-->
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption"><i class="icon-cogs"></i><%= @title %></div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+			<!-- <a href="#portlet-config" data-toggle="modal" class="config"></a>
+			<a href="javascript:;" class="reload"></a>
+			<a href="javascript:;" class="remove"></a> -->
+		</div>
+	</div>
+	<div class="portlet-body no-more-tables">
+		<div class="table-toolbar">
+			<div class="btn-group">
+				<%= link_to new_bank_account_path, class: "btn green", id: "sample_editable_1_new"  do %>
+					Add New <i class="icon-plus"></i>
+				<% end %>
+			</div>
+		</div>
+		<table class="table-bordered table-striped table-condensed cf">
+			<thead class="cf">
+				<tr>
+					<th>Bank Name</th>
+					<th>Account Name</th>
+					<th>Account Number</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @bank_accounts.each do |bank_account| %>
+					<tr>
+						<td data-title="Account Name"><%= bank_account.bank_name %></td>
+						<td data-title="Account Name"><%= bank_account.account_name %></td>
+						<td data-title="Account Number"><%= bank_account.account_number %></td>
+						<td data-title="Actions">
+							<%= link_to edit_bank_account_path(bank_account), class: "btn mini purple" do %>
+								Edit <i class="icon-edit"></i>
+							<% end %>
+							<%= link_to bank_account_path(bank_account), class: "btn mini black", method: :delete, confirm: "Are you sure?" do %>
+								Delete <i class="icon-trash"></i>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!-- END SAMPLE TABLE PORTLET-->
+<% content_for(:title) do %>
+	<%= @title %>
+<% end %>

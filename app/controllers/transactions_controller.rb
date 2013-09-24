@@ -20,6 +20,7 @@ class TransactionsController < ApplicationController
   end
 
   def show
+    @bank_accounts = BankAccount.order{[bank_name.asc]}
   	@title = "Transaction"
   	@transaction = Transaction.includes(:admin_user, :paxes).find(params[:id])
   	add_breadcrumb "Show", transaction_path(@transaction)

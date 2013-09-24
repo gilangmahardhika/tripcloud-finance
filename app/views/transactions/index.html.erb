@@ -31,6 +31,8 @@
 				<tr>
 					<th>Invoice Number</th>
 					<th>Total Pax</th>
+					<th>Booking Date</th>
+					<th>Due Date</th>
 					<th>Grand Price</th>
 					<th>&nbsp;</th>
 				</tr>
@@ -39,7 +41,9 @@
 				<% @transactions.each do |transaction| %>
 					<tr>
 						<td data-title="Name"><%= transaction.invoice_number %></td>
-						<td data-title="Booking Code"><%= transaction.paxes.count %></td>
+						<td data-title="Total Pax"><%= transaction.paxes.count %></td>
+						<td data-title="Booking Date"><%= transaction.issued_date %></td>
+						<td data-title="Due Date"><%= transaction.time_limit %></td>
 						<td data-title="Grand Price">
 							IDR <%= number_with_delimiter(transaction.total_price, delimiter: ".", separator: ",") %>
 						</td>
