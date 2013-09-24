@@ -58,5 +58,16 @@ module TripcloudFinance
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Mailer
+    config.action_mailer.smtp_settings = {
+        :address   => "smtp.mandrillapp.com",
+        :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
+        :enable_starttls_auto => true, # detects and uses STARTTLS
+        :user_name => "gilangmahardhika@gmail.com",
+        :password  => "yYMpwV-xJBf71kIhxuU2Eg", # SMTP password is any valid API key
+        :authentication => 'login', # Mandrill supports 'plain' or 'login'
+        :domain => 'listenonair.com', # your domain to identify your server when connecting
+      }
   end
 end

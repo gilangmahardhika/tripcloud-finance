@@ -59,6 +59,12 @@ class TransactionsController < ApplicationController
   	end
   end
 
+  def send_email
+    @transaction = Transaction.find(params[:id])
+    InvoiceMailer.invoice_email(@transaction, "admin@tripclouds.com", "gilangmahardhika@gmail.com").deliver
+    redirect_to @transaction
+  end
+
   private
   def index_path
   	transactions_path

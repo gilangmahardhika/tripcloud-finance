@@ -84,9 +84,11 @@
 					<li><strong>Grand Total:</strong> IDR <%= number_with_delimiter(@transaction.total_price, delimiter: ".", separator: ",") %></li>
 				</ul>
 				<br />
-				<a class="btn blue big hidden-print" onclick="javascript:window.print();">Print <i class="icon-print icon-big"></i></a>
-				<a class="btn green big hidden-print">Download <i class="m-icon-big-swapright m-icon-white"></i></a>
-				<a class="btn green big hidden-print">Send Email <i class="m-icon-big-swapright m-icon-white"></i></a>
+				<a class="btn blue  hidden-print" onclick="javascript:window.print();">Print <i class="icon-print icon-big"></i></a>
+				<a class="btn green  hidden-print">Download <i class="icon-white"></i></a>
+				<%= link_to send_email_transaction_path(@transaction), class: "btn green hidden-print" do %>
+				Send Email <i class="icon-white"></i>
+				<% end %>
 			</div>
 		</div>
 	</div>

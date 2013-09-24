@@ -17,6 +17,10 @@ TripcloudFinance::Application.routes.draw do
       post 'search_result'
     end
   end
-  resources :transactions
+  resources :transactions do
+    member do
+      get "send_email"
+    end
+  end
   resources :bank_accounts
 end
