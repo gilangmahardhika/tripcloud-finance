@@ -1,7 +1,7 @@
 class Pax < ActiveRecord::Base
-  attr_accessible :first_name, :id_number, :last_name, :nett_to_agent, :phone, :publish_fare, :seat_class, :ticket_number, :title, :transaction_id, :departure_id, :arrival_id, :route, :departure_date, :arrival_date, :airline_id, :middle_name, :booking_code, :publish_fare, :flight_number
+  attr_accessible :first_name, :id_number, :last_name, :nett_to_agent, :phone, :publish_fare, :seat_class, :ticket_number, :title, :transaction_id, :departure_id, :arrival_id, :route, :departure_date, :arrival_date, :airline_id, :middle_name, :booking_code, :flight_number
 
-  validates_presence_of :first_name, :last_name, :departure_id, :arrival_id, :route, :departure_date, :airline_id, :title
+  validates_presence_of :first_name, :last_name, :departure_id, :arrival_id, :route, :departure_date, :airline_id, :title, :nett_to_agent, :publish_fare
   # validates_presence_of :id_number, :if => :internation_destination?
   validates_presence_of :arrival_date, :if => :route_return?
 

@@ -54,12 +54,15 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span6">
-					<%= f.input :booking_code, as: :string, label: "Book Reference", input_html: {class: "m-wrap span12"} %>
+					<%= pax_form.input :booking_code, as: :string, label: "Book Reference", input_html: {class: "m-wrap span12"} %>
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span6">
-					<%= f.input :publish_fare, as: :string, label: "Total Price", input_html: {class: "m-wrap span12 single-price"} %>
+					<%= pax_form.input :nett_to_agent, as: :string, label: "NTA Price", input_html: {class: "m-wrap span12 nta-price"} %>
+				</div>
+				<div class="span6">
+					<%= pax_form.input :publish_fare, as: :string, label: "Publish Price", input_html: {class: "m-wrap span12 single-price"} %>
 				</div>
 			</div>
 		 <div class="row-fluid">
@@ -114,6 +117,9 @@
 		</div>
 	</div>
 	<div class="row-fluid">
+		<div class="span6">
+			<%= f.input :nett_to_agent, as: :string, label: "TotalNTA Price", input_html: { class: "m-wrap span12 total-nta-price", readonly: "readonly" } %>
+		</div>
 		<div class="span6">
 			<%= f.input :total_price, as: :string, label: "Grand Price", input_html: { class: "m-wrap span12 grand-price", readonly: "readonly" } %>
 		</div>
