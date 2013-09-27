@@ -1,4 +1,5 @@
 class Transaction < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   attr_accessible :admin_user_id, :issued_date, :time_limit, :route, :company, :total_price, :paxes_attributes, :personal, :to_name, :email, :address, :booking_code, :publish_fare, :nett_to_agent
 
   # belongs_to :customer
@@ -29,6 +30,14 @@ class Transaction < ActiveRecord::Base
 
   def time_limit_formatted
     self.time_limit.strftime("%d %b %Y")
+  end
+
+  def nett_to_agent_formatted
+    "IDR #{self.number_with_delimiter(self.nett_to_agent, delimiter: ".", separator: ",")}"
+  end
+
+  def publish_fare_formatted
+    "IDR #{self.number_with_delimiter(self.publish_fare, delimiter: ".", separator: ",")}"
   end
 
 end

@@ -1,4 +1,5 @@
 class Pax < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
   attr_accessible :first_name, :id_number, :last_name, :nett_to_agent, :phone, :publish_fare, :seat_class, :ticket_number, :title, :transaction_id, :departure_id, :arrival_id, :route, :departure_date, :arrival_date, :airline_id, :middle_name, :booking_code, :flight_number
 
   validates_presence_of :first_name, :last_name, :departure_id, :arrival_id, :route, :departure_date, :airline_id, :title, :nett_to_agent, :publish_fare
@@ -28,5 +29,9 @@ class Pax < ActiveRecord::Base
 
   def departure_date_formatted
     self.departure_date.strftime("%d %b %Y") 
+  end
+
+  def publish_fare_formatted
+    "IDR #{self.number_with_delimiter(self.publish_fare, delimiter: ".", separator: ",")}"
   end
 end
