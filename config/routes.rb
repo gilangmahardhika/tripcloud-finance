@@ -1,5 +1,8 @@
 TripcloudFinance::Application.routes.draw do
   root to: 'home#index'
+
+  # Sidekiq Monitor
+  # mount Sidekiq::Web, at: '/sidekiq'
   resources :home do
     collection do
       post 'login'

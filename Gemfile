@@ -20,6 +20,8 @@ gem "nested_form", :git => 'git@github.com:gilangmahardhika/nested_form.git'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-kaminari-views'
 
+# gem 'bootstrap-datepicker-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

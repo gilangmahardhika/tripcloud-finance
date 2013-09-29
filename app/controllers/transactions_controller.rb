@@ -61,6 +61,7 @@ class TransactionsController < ApplicationController
 
   def send_email
     @transaction = Transaction.find(params[:id])
+    # MailingWorker.perform_async(@transaction, "admin@tripclouds.com", "gilangmahardhika@gmail.com")
     InvoiceMailer.invoice_email(@transaction, "admin@tripclouds.com", "gilangmahardhika@gmail.com").deliver
     redirect_to @transaction
   end

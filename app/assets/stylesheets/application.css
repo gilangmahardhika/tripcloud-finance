@@ -19,4 +19,5 @@
  *= require ./themes/default.css
  *= require ../javascripts/plugins/uniform/css/uniform.default.css
  *= require ../javascripts/plugins/select2/select2_metro.css
+ *= require dates
  */

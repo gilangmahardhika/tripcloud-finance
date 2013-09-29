@@ -75,205 +75,217 @@ var FormComponents = function () {
         });
     }
 
-    var handleDatePickers = function () {
+    // var handleDatePickers = function () {
 
-        if (jQuery().datepicker) {
-            $('.date-picker').datepicker({
-                rtl : App.isRTL()
-            });
-        }
+    //     if (jQuery().datepicker) {
+    //         $('.date-picker').datepicker({
+    //             rtl : App.isRTL(),
+    //             autoclose : true,
+    //             numberOfMonths: 3,
+    //             showCurrentAtPos: 1,
+    //         });
+    //     }
+    // }
+
+    // Custom datepicker
+    var handleDatePicker = function () {
+        // $('[data-behaviour~=datepicker]').datepicker({
+        $('.datepicker').datepicker({
+            numberOfMonths: 3,
+            showCurrentAtPos: 1,
+        }); 
     }
 
-    var handleTimePickers = function () {
+    // var handleTimePickers = function () {
         
-        if (jQuery().timepicker) {
-            $('.timepicker-default').timepicker();
-            $('.timepicker-24').timepicker({
-                minuteStep: 1,
-                showSeconds: true,
-                showMeridian: false
-            });
-        }
-    }
+    //     if (jQuery().timepicker) {
+    //         $('.timepicker-default').timepicker();
+    //         $('.timepicker-24').timepicker({
+    //             minuteStep: 1,
+    //             showSeconds: true,
+    //             showMeridian: false
+    //         });
+    //     }
+    // }
 
-    var handleDateRangePickers = function () {
-        if (!jQuery().daterangepicker) {
-            return;
-        }
+    // var handleDateRangePickers = function () {
+    //     if (!jQuery().daterangepicker) {
+    //         return;
+    //     }
 
-        $('.date-range').daterangepicker(
-            {
-                opens: (App.isRTL() ? 'left' : 'right'),
-                format: 'MM/dd/yyyy',
-                separator: ' to ',
-                startDate: Date.today().add({
-                    days: -29
-                }),
-                endDate: Date.today(),
-                minDate: '01/01/2012',
-                maxDate: '12/31/2014',
-            }
-        );
+    //     $('.date-range').daterangepicker(
+    //         {
+    //             opens: (App.isRTL() ? 'left' : 'right'),
+    //             format: 'MM/dd/yyyy',
+    //             separator: ' to ',
+    //             startDate: Date.today().add({
+    //                 days: -29
+    //             }),
+    //             endDate: Date.today(),
+    //             minDate: '01/01/2012',
+    //             maxDate: '12/31/2014',
+    //         }
+    //     );
 
-        $('#form-date-range').daterangepicker({
-            ranges: {
-                'Today': ['today', 'today'],
-                'Yesterday': ['yesterday', 'yesterday'],
-                'Last 7 Days': [Date.today().add({
-                        days: -6
-                    }), 'today'],
-                'Last 29 Days': [Date.today().add({
-                        days: -29
-                    }), 'today'],
-                'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-                'Last Month': [Date.today().moveToFirstDayOfMonth().add({
-                        months: -1
-                    }), Date.today().moveToFirstDayOfMonth().add({
-                        days: -1
-                    })]
-            },
-            opens: (App.isRTL() ? 'left' : 'right'),
-            format: 'MM/dd/yyyy',
-            separator: ' to ',
-            startDate: Date.today().add({
-                days: -29
-            }),
-            endDate: Date.today(),
-            minDate: '01/01/2012',
-            maxDate: '12/31/2014',
-            locale: {
-                applyLabel: 'Submit',
-                fromLabel: 'From',
-                toLabel: 'To',
-                customRangeLabel: 'Custom Range',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1
-            },
-            showWeekNumbers: true,
-            buttonClasses: ['btn-danger']
-        },
+    //     $('#form-date-range').daterangepicker({
+    //         ranges: {
+    //             'Today': ['today', 'today'],
+    //             'Yesterday': ['yesterday', 'yesterday'],
+    //             'Last 7 Days': [Date.today().add({
+    //                     days: -6
+    //                 }), 'today'],
+    //             'Last 29 Days': [Date.today().add({
+    //                     days: -29
+    //                 }), 'today'],
+    //             'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+    //             'Last Month': [Date.today().moveToFirstDayOfMonth().add({
+    //                     months: -1
+    //                 }), Date.today().moveToFirstDayOfMonth().add({
+    //                     days: -1
+    //                 })]
+    //         },
+    //         opens: (App.isRTL() ? 'left' : 'right'),
+    //         format: 'MM/dd/yyyy',
+    //         separator: ' to ',
+    //         startDate: Date.today().add({
+    //             days: -29
+    //         }),
+    //         endDate: Date.today(),
+    //         minDate: '01/01/2012',
+    //         maxDate: '12/31/2014',
+    //         locale: {
+    //             applyLabel: 'Submit',
+    //             fromLabel: 'From',
+    //             toLabel: 'To',
+    //             customRangeLabel: 'Custom Range',
+    //             daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    //             monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    //             firstDay: 1
+    //         },
+    //         showWeekNumbers: true,
+    //         buttonClasses: ['btn-danger']
+    //     },
 
-        function (start, end) {
-            $('#form-date-range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
-        });
+    //     function (start, end) {
+    //         $('#form-date-range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+    //     });
 
-        $('#form-date-range span').html(Date.today().add({
-            days: -29
-        }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
+    //     $('#form-date-range span').html(Date.today().add({
+    //         days: -29
+    //     }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
 
 
-        //modal version:
+    //     //modal version:
 
-        $('#form-date-range-modal').daterangepicker({
-            ranges: {
-                'Today': ['today', 'today'],
-                'Yesterday': ['yesterday', 'yesterday'],
-                'Last 7 Days': [Date.today().add({
-                        days: -6
-                    }), 'today'],
-                'Last 29 Days': [Date.today().add({
-                        days: -29
-                    }), 'today'],
-                'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-                'Last Month': [Date.today().moveToFirstDayOfMonth().add({
-                        months: -1
-                    }), Date.today().moveToFirstDayOfMonth().add({
-                        days: -1
-                    })]
-            },
-            opens: (App.isRTL() ? 'left' : 'right'),
-            format: 'MM/dd/yyyy',
-            separator: ' to ',
-            startDate: Date.today().add({
-                days: -29
-            }),
-            endDate: Date.today(),
-            minDate: '01/01/2012',
-            maxDate: '12/31/2014',
-            locale: {
-                applyLabel: 'Submit',
-                fromLabel: 'From',
-                toLabel: 'To',
-                customRangeLabel: 'Custom Range',
-                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                firstDay: 1
-            },
-            showWeekNumbers: true,
-            buttonClasses: ['btn-danger']
-        },
+    //     $('#form-date-range-modal').daterangepicker({
+    //         ranges: {
+    //             'Today': ['today', 'today'],
+    //             'Yesterday': ['yesterday', 'yesterday'],
+    //             'Last 7 Days': [Date.today().add({
+    //                     days: -6
+    //                 }), 'today'],
+    //             'Last 29 Days': [Date.today().add({
+    //                     days: -29
+    //                 }), 'today'],
+    //             'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+    //             'Last Month': [Date.today().moveToFirstDayOfMonth().add({
+    //                     months: -1
+    //                 }), Date.today().moveToFirstDayOfMonth().add({
+    //                     days: -1
+    //                 })]
+    //         },
+    //         opens: (App.isRTL() ? 'left' : 'right'),
+    //         format: 'MM/dd/yyyy',
+    //         separator: ' to ',
+    //         startDate: Date.today().add({
+    //             days: -29
+    //         }),
+    //         endDate: Date.today(),
+    //         minDate: '01/01/2012',
+    //         maxDate: '12/31/2014',
+    //         locale: {
+    //             applyLabel: 'Submit',
+    //             fromLabel: 'From',
+    //             toLabel: 'To',
+    //             customRangeLabel: 'Custom Range',
+    //             daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    //             monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    //             firstDay: 1
+    //         },
+    //         showWeekNumbers: true,
+    //         buttonClasses: ['btn-danger']
+    //     },
 
-        function (start, end) {
-            $('#form-date-range-modal span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
-        });
+    //     function (start, end) {
+    //         $('#form-date-range-modal span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+    //     });
 
-        $('#form-date-range-modal span').html(Date.today().add({
-            days: -29
-        }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
+    //     $('#form-date-range-modal span').html(Date.today().add({
+    //         days: -29
+    //     }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
 
-    }
+    // }
 
-    var handleDatetimePicker = function () {        
+    // var handleDatetimePicker = function () {        
 
-        $(".form_datetime").datetimepicker({
-            isRTL: App.isRTL(),
-            format: "dd MM yyyy - hh:ii",
-            pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
-        });
+    //     $(".form_datetime").datetimepicker({
+    //         isRTL: App.isRTL(),
+    //         format: "dd MM yyyy - hh:ii",
+    //         pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
+    //     });
 
-         $(".form_advance_datetime").datetimepicker({
-            isRTL: App.isRTL(),
-            format: "dd MM yyyy - hh:ii",
-            autoclose: true,
-            todayBtn: true,
-            startDate: "2013-02-14 10:00",
-            pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left"),
-            minuteStep: 10
-        });
+    //      $(".form_advance_datetime").datetimepicker({
+    //         isRTL: App.isRTL(),
+    //         format: "dd MM yyyy - hh:ii",
+    //         autoclose: true,
+    //         todayBtn: true,
+    //         startDate: "2013-02-14 10:00",
+    //         pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left"),
+    //         minuteStep: 10
+    //     });
 
-         $(".form_meridian_datetime").datetimepicker({
-            isRTL: App.isRTL(),
-            format: "dd MM yyyy - HH:ii P",
-            showMeridian: true,
-            autoclose: true,
-            pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left"),
-            todayBtn: true
-        });
-    }
+    //      $(".form_meridian_datetime").datetimepicker({
+    //         isRTL: App.isRTL(),
+    //         format: "dd MM yyyy - HH:ii P",
+    //         showMeridian: true,
+    //         autoclose: true,
+    //         pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left"),
+    //         todayBtn: true
+    //     });
+    // }
 
-    var handleClockfaceTimePickers = function () {
+    // var handleClockfaceTimePickers = function () {
 
-        if (!jQuery().clockface) {
-            return;
-        }
+    //     if (!jQuery().clockface) {
+    //         return;
+    //     }
 
-        $('.clockface_1').clockface();
+    //     $('.clockface_1').clockface();
 
-        $('#clockface_2').clockface({
-            format: 'HH:mm',
-            trigger: 'manual'
-        });
+    //     $('#clockface_2').clockface({
+    //         format: 'HH:mm',
+    //         trigger: 'manual'
+    //     });
 
-        $('#clockface_2_toggle').click(function (e) {
-            e.stopPropagation();
-            $('#clockface_2').clockface('toggle');
-        });
+    //     $('#clockface_2_toggle').click(function (e) {
+    //         e.stopPropagation();
+    //         $('#clockface_2').clockface('toggle');
+    //     });
 
-        $('#clockface_2_modal').clockface({
-            format: 'HH:mm',
-            trigger: 'manual'
-        });
+    //     $('#clockface_2_modal').clockface({
+    //         format: 'HH:mm',
+    //         trigger: 'manual'
+    //     });
 
-        $('#clockface_2_modal_toggle').click(function (e) {
-            e.stopPropagation();
-            $('#clockface_2_modal').clockface('toggle');
-        });
+    //     $('#clockface_2_modal_toggle').click(function (e) {
+    //         e.stopPropagation();
+    //         $('#clockface_2_modal').clockface('toggle');
+    //     });
 
-        $('.clockface_3').clockface({
-            format: 'H:mm'
-        }).clockface('show', '14:30');
-    }
+    //     $('.clockface_3').clockface({
+    //         format: 'H:mm'
+    //     }).clockface('show', '14:30');
+    // }
 
     var handleColorPicker = function () {
         if (!jQuery().colorpicker) {
@@ -284,6 +296,8 @@ var FormComponents = function () {
         });
         $('.colorpicker-rgba').colorpicker();
     }
+
+    
 
     var handleSelect2 = function () {
 
@@ -728,11 +742,12 @@ var FormComponents = function () {
             handleWysihtml5();
             handleToggleButtons();
             handleTagsInput();
-            handleDatePickers();
-            handleTimePickers();
-            handleDatetimePicker();
-            handleDateRangePickers();
-            handleClockfaceTimePickers();
+            // handleDatePicker();
+            // handleDatePickers();
+            // handleTimePickers();
+            // handleDatetimePicker();
+            // handleDateRangePickers();
+            // handleClockfaceTimePickers();
             handleColorPicker();
             handleSelect2();
             handleSelect2Modal();

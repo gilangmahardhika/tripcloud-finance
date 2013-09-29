@@ -11,19 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require plugins/ckeditor/ckeditor  
-//= require plugins/bootstrap-fileupload/bootstrap-fileupload
 //= require plugins/chosen-bootstrap/chosen/chosen.jquery.min
 //= require plugins/select2/select2.min
 //= require plugins/bootstrap-wysihtml5/wysihtml5-0.3.0 
 //= require plugins/bootstrap-wysihtml5/bootstrap-wysihtml5
 //= require plugins/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons
-//= require plugins/bootstrap-datepicker/js/bootstrap-datepicker
-//= require plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker
-//= require plugins/clockface/js/clockface
-//= require plugins/bootstrap-daterangepicker/date
-//= require plugins/bootstrap-daterangepicker/daterangepicker 
-//= require plugins/bootstrap-colorpicker/js/bootstrap-colorpicker  
-//= require plugins/bootstrap-timepicker/js/bootstrap-timepicker
 //= require plugins/jquery-inputmask/jquery.inputmask.bundle.min   
 //= require plugins/jquery.input-ip-address-control-1.0.min
 //= require plugins/jquery-multi-select/js/jquery.multi-select 
@@ -33,5 +25,6 @@
 //= require plugins/bootstrap-switch/static/js/bootstrap-switch
 //= require plugins/jquery-tags-input/jquery.tagsinput.min
 //= require scripts/form-components
-//= require jquery_nested_form
+//= require nested_form
 //= require form-price
+//= require dates
