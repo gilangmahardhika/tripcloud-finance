@@ -21,10 +21,10 @@ class Transaction < ActiveRecord::Base
   # Callbacks
   before_save :sum_total_price
   before_save :sum_nett_to_agent
-  before_create :set_invoice_number
+  before_save :set_invoice_number
 
   def set_invoice_number
-    self.invoice_number = "2013/#{self.id.to_s}/tc"
+    self.invoice_number = "#{self.id}-TC/#{format_date_for_invoice_number}"
   end
 
   def sum_total_price
@@ -50,6 +50,10 @@ class Transaction < ActiveRecord::Base
 
   def personal_is_true?
   	personal == true
+  end
+
+  def format_date_for_invoice_number
+    Time.now.strftime("%d/%m/%y")
   end
 
 

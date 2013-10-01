@@ -59,6 +59,10 @@ module TripcloudFinance
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # PDFKit
+    require 'wicked_pdf'
+    config.middleware.use WickedPdf::Middleware
+
     # Mailer
     config.action_mailer.smtp_settings = {
         :address   => "smtp.mandrillapp.com",

@@ -23,6 +23,7 @@ TripcloudFinance::Application.routes.draw do
   resources :transactions do
     member do
       get "send_email"
+      get "to_pdf"
     end
   end
   resources :bank_accounts

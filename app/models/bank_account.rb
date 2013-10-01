@@ -4,4 +4,8 @@ class BankAccount < ActiveRecord::Base
   validates_presence_of :account_name, :account_number, :branch, :bank_name
   validates_numericality_of :account_number
 	validates_uniqueness_of :account_number
+
+	def self.order_by_name
+		order("bank_name asc")
+	end
 end
