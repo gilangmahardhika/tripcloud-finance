@@ -38,9 +38,9 @@ class Transaction < ActiveRecord::Base
   def sum_nett_to_agent
     total = 0
     self.paxes.each do |pax|
-      total = total + pax.publish_fare
+      total = total + pax.nett_to_agent
     end
-    self.total_price = total
+    self.nett_to_agent = total
   end
   
 
