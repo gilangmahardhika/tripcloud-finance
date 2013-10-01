@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924145203) do
+ActiveRecord::Schema.define(:version => 20131001055753) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20130924145203) do
     t.string   "account_name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "branch"
   end
 
   create_table "cities", :force => true do |t|
@@ -112,23 +113,14 @@ ActiveRecord::Schema.define(:version => 20130924145203) do
   add_index "paxes", ["transaction_id"], :name => "index_paxes_on_transaction_id"
 
   create_table "transactions", :force => true do |t|
-    t.integer  "customer_id"
-    t.integer  "departure_id"
     t.integer  "arrival_id"
-    t.string   "booking_code"
     t.datetime "time_limit"
     t.date     "issued_date"
     t.integer  "admin_user_id"
-    t.decimal  "nett_to_agent",    :precision => 10, :scale => 0
-    t.decimal  "publish_fare",     :precision => 10, :scale => 0
-    t.integer  "airline_id"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.string   "event_name"
-    t.string   "route"
-    t.string   "flight_code"
-    t.decimal  "total_price",      :precision => 10, :scale => 0
-    t.string   "transaction_type"
+    t.decimal  "nett_to_agent",  :precision => 10, :scale => 0
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.decimal  "total_price",    :precision => 10, :scale => 0
     t.string   "to_name"
     t.string   "email"
     t.string   "company"
@@ -138,19 +130,12 @@ ActiveRecord::Schema.define(:version => 20130924145203) do
   end
 
   add_index "transactions", ["admin_user_id"], :name => "index_transactions_on_admin_user_id"
-  add_index "transactions", ["airline_id"], :name => "index_transactions_on_airline_id"
   add_index "transactions", ["arrival_id"], :name => "index_transactions_on_arrival_id"
-  add_index "transactions", ["booking_code"], :name => "index_transactions_on_booking_code"
-  add_index "transactions", ["customer_id"], :name => "index_transactions_on_customer_id"
-  add_index "transactions", ["departure_id"], :name => "index_transactions_on_departure_id"
   add_index "transactions", ["email"], :name => "index_transactions_on_email"
-  add_index "transactions", ["event_name"], :name => "index_transactions_on_event_name"
   add_index "transactions", ["invoice_number"], :name => "index_transactions_on_invoice_number"
   add_index "transactions", ["issued_date"], :name => "index_transactions_on_issued_date"
   add_index "transactions", ["nett_to_agent"], :name => "index_transactions_on_nett_to_agent"
-  add_index "transactions", ["publish_fare"], :name => "index_transactions_on_publish_fare"
   add_index "transactions", ["time_limit"], :name => "index_transactions_on_time_limit"
   add_index "transactions", ["to_name"], :name => "index_transactions_on_to_name"
-  add_index "transactions", ["transaction_type"], :name => "index_transactions_on_transaction_type"
 
 end

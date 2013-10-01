@@ -61,16 +61,13 @@
           });
       });
       // ReInitialize DatePicker
-      // $('.date-picker').datepicker({
-      //     rtl : App.isRTL(),
-      //     autoclose : true,
-      //     numberOfMonths: 3,
-      //     showCurrentAtPos: 1,
-      // });
-      // $('.date-picker').datepicker({
-      //     numberOfMonths: 3,
-      //     showCurrentAtPos: 1,
-      // }); 
+      $( ".departure_date" ).each(function(){
+          $(this).datepicker({
+              numberOfMonths: 3,
+              showButtonPanel: false,
+              dateFormat: "yy-mm-dd"
+          });
+      });
       return false;
     },
     newId: function() {

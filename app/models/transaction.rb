@@ -1,20 +1,35 @@
 class Transaction < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-  attr_accessible :admin_user_id, :issued_date, :time_limit, :route, :company, :total_price, :paxes_attributes, :personal, :to_name, :email, :address, :booking_code, :publish_fare, :nett_to_agent
+  include Modules::TransactionViewFormat
+  include Modules::HasAdminUser
 
-  # belongs_to :customer
-  # belongs_to :airline
+  AVAILABLE_DATES = ["time_limit", "issued_date"]
+  AVAILABLE_PRICES = ["publish_fare", "nett_to_agent", "total_price"]
 
-  validates_presence_of :admin_user_id, :time_limit, :email, :to_name, :issued_date
+  attr_accessible :issued_date, :time_limit, :route, :company, :total_price, :paxes_attributes, :personal, :to_name, :email, :address, :booking_code, :publish_fare, :nett_to_agent
+
+  validates_presence_of :time_limit, :email, :to_name, :issued_date, :invoice_number, :total_price, :address
   validates_presence_of :company, :unless => :personal_is_true?
- 	validates_presence_of :event_name, :if => :transaction_type_corporate?
- 	# belongs_to :airline
- 	belongs_to :admin_user
- 	# belongs_to :customer
+  validates_uniqueness_of :invoice_number
 
+  # Associations
+ 	belongs_to :admin_user
  	has_many :paxes, class_name: "Pax", dependent: :destroy
 
   accepts_nested_attributes_for :paxes
+
+  # Callbacks
+  before_save :sum_total_price
+
+
+  def sum_total_price
+    total = 0
+    self.paxes.each do |pax|
+      total = total + pax.publish_fare
+    end
+    self.total_price = total
+  end
+  
 
   def transaction_type_corporate?
   	transaction_type == "corporate"
@@ -23,21 +38,4 @@ class Transaction < ActiveRecord::Base
   def personal_is_true?
   	personal == true
   end
-
-  def issued_date_formatted
-    self.issued_date.strftime("%d %b %Y")
-  end
-
-  def time_limit_formatted
-    self.time_limit.strftime("%d %b %Y")
-  end
-
-  def nett_to_agent_formatted
-    "IDR #{self.number_with_delimiter(self.nett_to_agent, delimiter: ".", separator: ",")}"
-  end
-
-  def publish_fare_formatted
-    "IDR #{self.number_with_delimiter(self.publish_fare, delimiter: ".", separator: ",")}"
-  end
-
 end
