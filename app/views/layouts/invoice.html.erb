@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<%= wicked_pdf_stylesheet_link_tag "pdf", media: "print" %>
+	<%= wicked_pdf_stylesheet_link_tag "pdf" %>
 	<%= if content_for?(:invoice); yield(:invoice); end; %>	
 	<%= csrf_meta_tags %>
 	<title>

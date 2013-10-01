@@ -105,6 +105,6 @@
 	<!-- END PAGE CONTENT-->
 </div>
 <%= content_for(:invoice) do %>
-	<%= wicked_pdf_stylesheet_link_tag "invoice_screen", media: "all" %>
-	<%= wicked_pdf_stylesheet_link_tag "invoice_print", media: "print" %>
+	<%= wicked_pdf_stylesheet_link_tag "invoice_screen" %>
+	<%= wicked_pdf_stylesheet_link_tag "invoice_print" %>
 <% end %>
