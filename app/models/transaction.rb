@@ -8,7 +8,7 @@ class Transaction < ActiveRecord::Base
 
   attr_accessible :issued_date, :time_limit, :route, :company, :total_price, :paxes_attributes, :personal, :to_name, :email, :address, :booking_code, :publish_fare, :nett_to_agent
 
-  validates_presence_of :time_limit, :email, :to_name, :issued_date, :invoice_number, :total_price, :address
+  validates_presence_of :time_limit, :email, :to_name, :issued_date#, :invoice_number, :total_price, :address
   validates_presence_of :company, :unless => :personal_is_true?
   validates_uniqueness_of :invoice_number
 
@@ -20,9 +20,22 @@ class Transaction < ActiveRecord::Base
 
   # Callbacks
   before_save :sum_total_price
+  before_save :sum_nett_to_agent
+  before_create :set_invoice_number
 
+  def set_invoice_number
+    self.invoice_number = "2013/#{self.id.to_s}/tc"
+  end
 
   def sum_total_price
+    total = 0
+    self.paxes.each do |pax|
+      total = total + pax.publish_fare
+    end
+    self.total_price = total
+  end
+
+  def sum_nett_to_agent
     total = 0
     self.paxes.each do |pax|
       total = total + pax.publish_fare
@@ -38,4 +51,6 @@ class Transaction < ActiveRecord::Base
   def personal_is_true?
   	personal == true
   end
+
+
 end
