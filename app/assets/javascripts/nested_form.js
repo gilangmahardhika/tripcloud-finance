@@ -73,7 +73,6 @@
               showButtonPanel: false,
               dateFormat: "yy-mm-dd"
           });
-
         });
 
         $( ".arrival_date" ).each(function(){
@@ -82,6 +81,7 @@
               showButtonPanel: false,
               dateFormat: "yy-mm-dd"
           });
+        });
       return false;
     },
     newId: function() {
