@@ -24,6 +24,9 @@ class Pax < ActiveRecord::Base
   # Callbacks
   # before_save :sum_total_price
 
+  # Getter & Setter
+  
+
   def internation_destination?
   	self.departure.country != "Indonesia" || self.arrival.country != "Indonesia"
   end

@@ -61,13 +61,27 @@
           });
       });
       // ReInitialize DatePicker
-      $( ".departure_date" ).each(function(){
+      $( ".datepicker" ).datepicker({
+          numberOfMonths: 3,
+          showButtonPanel: false,
+          dateFormat: "yy-mm-dd"
+        });
+
+        $( ".departure_date" ).each(function(){
           $(this).datepicker({
               numberOfMonths: 3,
               showButtonPanel: false,
               dateFormat: "yy-mm-dd"
           });
-      });
+
+        });
+
+        $( ".arrival_date" ).each(function(){
+          $(this).datepicker({
+              numberOfMonths: 3,
+              showButtonPanel: false,
+              dateFormat: "yy-mm-dd"
+          });
       return false;
     },
     newId: function() {

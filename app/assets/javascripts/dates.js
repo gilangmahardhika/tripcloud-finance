@@ -13,6 +13,15 @@ $(function() {
   	});
 
   });
+
+  $( ".arrival_date" ).each(function(){
+    $(this).datepicker({
+        numberOfMonths: 3,
+        showButtonPanel: false,
+        dateFormat: "yy-mm-dd"
+    });
+
+  });
   // $(document).on("change", "input.departure_date", function(){
   // 	$("input.departure_date").each(function(){
   // 		var get_departure_date = $(this).val();
@@ -33,13 +42,13 @@ $(function() {
   // 	});
   // });
 
-  $( ".arrival_date" ).each(function(){
-  	var get_closest_date = 
-  	$(this).datepicker({
-  	    numberOfMonths: 3,
-  	    showButtonPanel: false,
-  	    dateFormat: "yy-mm-dd"
-  	});
-  });
+  // $( ".arrival_date" ).each(function(){
+  // 	var get_closest_date = 
+  // 	$(this).datepicker({
+  // 	    numberOfMonths: 3,
+  // 	    showButtonPanel: false,
+  // 	    dateFormat: "yy-mm-dd"
+  // 	});
+  // });
 
 });

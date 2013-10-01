@@ -322,10 +322,10 @@
   bottom: 0;
 }
 .chzn-container .chzn-results-scroll-down span {
-  background: url("chosen-sprite.png") no-repeat -4px -3px;
+  background: url("../images/chosen-sprite.png") no-repeat -4px -3px;
 }
 .chzn-container .chzn-results-scroll-up span {
-  background: url("chosen-sprite.png") no-repeat -22px -3px;
+  background: url("../images/chosen-sprite.png") no-repeat -22px -3px;
 }
 .chzn-container-multi .chzn-results {
   margin: 4px;
