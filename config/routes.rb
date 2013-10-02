@@ -1,8 +1,12 @@
+require 'sidekiq/web'
 TripcloudFinance::Application.routes.draw do
   root to: 'home#index'
 
+  # Mounting
+  # match "/delayed_job" => DelayedJobWeb, :anchor => false
+
   # Sidekiq Monitor
-  # mount Sidekiq::Web, at: '/sidekiq'
+  mount Sidekiq::Web, at: '/sidekiq'
   resources :home do
     collection do
       post 'login'

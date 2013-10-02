@@ -63,9 +63,9 @@ class TransactionsController < ApplicationController
   end
 
   def send_email
-    @transaction = Transaction.find(params[:id])
-    InvoiceMailer.invoice_email(@transaction, "admin@tripclouds.com", "gilangmahardhika@gmail.com").deliver
-    redirect_to @transaction
+    # MailingWorker.perform_async(params[:id].to_i, "admin@tripclouds.com", "gilangmahardhika@gmail.com")
+    InvoiceMailer.delay.invoice_email(params[:id], "admin@listenonair.com", "gilangmahardhika@gmail.com")#.deliver
+    redirect_to transaction_url(params[:id])
   end
 
   def to_pdf
@@ -74,10 +74,11 @@ class TransactionsController < ApplicationController
     respond_to  do |format|
       format.html { render layout: "invoice" }
       format.pdf do
-        render pdf: "invoice_#{@transaction.invoice_number}", layout: "invoice" , disposition: 'attachment',
-              footer: {
-                center: "<p><strong>PT. TRINOBEL TIGRIS</strong></p><p>Level 5, Suite 501-504, Tower B, Beltway Office Park, Jl. Letjen TB Simatupang No.41 Jakarta - Indonesia 12550</p>",  
-              }, save_to_file: Rails.root.join("public/invoices/#{@transaction.id}, #{filename}.pdf"), save_only: false
+        render pdf: "invoice_#{@transaction.invoice_number}", layout: "invoice" , disposition: 'attachment', save_to_file: Rails.root.join('pdfs', "#{@transaction.invoice_number}.pdf"), save_only: false
+        save_path = Rails.root.join('pdfs', "#{@transaction.invoice_number}.pdf")
+        File.open(save_path, 'wb') do |file|
+          file << pdf
+        end
       end
     end
   end

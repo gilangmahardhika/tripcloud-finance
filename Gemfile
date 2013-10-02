@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'squeel'
 gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'carrierwave'
 gem 'rmagick'
 gem 'private_pub'
@@ -20,7 +21,10 @@ gem "nested_form", :git => 'git@github.com:gilangmahardhika/nested_form.git'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-kaminari-views'
 
-# gem 'bootstrap-datepicker-rails'
+# gem 'delayed_job_active_record'
+# gem 'daemons'
+# gem "delayed_job_web"
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,8 +37,9 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'less-rails'
 end
-gem 'less-rails'
+
 
 gem 'jquery-rails'
 # gem "pdfkit"

@@ -85,6 +85,11 @@ namespace :deploy do
     run "cd #{current_path} && bundle exec rake airports:migrate RAILS_ENV=production --trace"
   end
 
+  desc "start sidekiq"
+  task :start_sidekiq do
+    run "cd #{current_path} && bundle exec sidekiq"
+  end
+
 end
 
 before "deploy:setup", "rvm:install_ruby"
