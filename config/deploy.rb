@@ -1,6 +1,7 @@
 # Bundler Integration
 require "bundler/capistrano"
 require "rvm/capistrano"
+require 'sidekiq/capistrano'
  
 # Application Settings
 set :application,   "tripcloud-finance"
@@ -87,7 +88,7 @@ namespace :deploy do
 
   desc "start sidekiq"
   task :start_sidekiq do
-    run "cd #{current_path} && bundle exec sidekiq"
+    run "cd #{current_path} && bundle exec sidekiq RAILS_ENV=production"
   end
 
 end
