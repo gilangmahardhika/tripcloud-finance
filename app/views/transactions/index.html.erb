@@ -44,7 +44,7 @@
 					<tr>
 						<td data-title="Invoice Number"><%= transaction.invoice_number %></td>
 						<td data-title="Billing Name"><%= transaction.to_name %></td>
-						<td data-title="Total Pax"><%= transaction.paxes.count %></td>
+						<td data-title="Total Pax"><%= transaction.paxes.size %></td>
 						<td data-title="Booking Date"><%= transaction.issued_date_formatted %></td>
 						<td data-title="Due Date"><%= transaction.time_limit_formatted %></td>
 						<td data-title="NTA Price">

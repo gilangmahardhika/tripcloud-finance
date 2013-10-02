@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   before_filter :check_active_user, only: [:index]
+  skip_before_filter :authorize_page
 	layout "login/login"
+  
   def index
   	@title = "Login"
   end
@@ -9,7 +11,6 @@ class HomeController < ApplicationController
   	user = AdminUser.login(params[:admin_user])
   	if user
   		if user.authenticate(params[:admin_user][:password])
-	  		# binding.pry
 	  		session[:admin_user_id] = user.id
 	  		redirect_to dashboard_index_url, notice: "Login successfull"
 	  	else
@@ -26,6 +27,7 @@ class HomeController < ApplicationController
   end
 
   private
+
   def authentication_fail
   	flash[:error] = "Login failed"
   	redirect_to home_index_url

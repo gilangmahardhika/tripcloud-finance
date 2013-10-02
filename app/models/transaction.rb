@@ -2,6 +2,7 @@ class Transaction < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include Modules::TransactionViewFormat
   include Modules::HasAdminUser
+  extend Modules::TransactionMethods
 
   AVAILABLE_DATES = ["time_limit", "issued_date"]
   AVAILABLE_PRICES = ["publish_fare", "nett_to_agent", "total_price"]
@@ -21,10 +22,10 @@ class Transaction < ActiveRecord::Base
   # Callbacks
   before_save :sum_total_price
   before_save :sum_nett_to_agent
-  before_create :set_invoice_number
+  after_create :set_invoice_number
 
   def set_invoice_number
-    self.invoice_number = "#{self.id}-TC/#{format_date_for_invoice_number}"
+    self.invoice_number = "#{self.id}-TC/#{format_date_for_invoice_number}"; self.save!;
   end
 
   def sum_total_price

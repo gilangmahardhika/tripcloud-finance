@@ -8,4 +8,8 @@ class BankAccount < ActiveRecord::Base
 	def self.order_by_name
 		order("bank_name asc")
 	end
+
+	def bank_name_format
+		"#{self.bank_name}, #{self.branch}"
+	end
 end
