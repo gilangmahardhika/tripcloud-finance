@@ -1,42 +1,93 @@
-<div class="row-fluid">
-	<div class="span6">
-		<!-- BEGIN SAMPLE TABLE PORTLET-->
-		<div class="portlet box red">
-			<div class="portlet-title">
-				<div class="caption"><i class="icon-cogs"></i>Transaction Reminder</div>
-			</div>
-			<div class="portlet-body">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Invoice Number</th>
-							<th>Name</th>
-							<th>Total</th>
-							<th>Due Date</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% no = 1 %>
-						<% @last_transactions.each do |last_transaction| %>
-							<tr>
-								<td><%= no %></td>
-								<td><%= link_to last_transaction.invoice_number, transaction_path(last_transaction) %></td>
-								<td><%= last_transaction.to_name %></td>
-								<td><%= last_transaction.total_price %></td>
-								<td>
-									<strong>
-										<%= last_transaction.time_limit_formatted %>
-									</strong>
-								</td>
-							</tr>
-							<% no = no+1 %>
-						<% end %>
-					</tbody>
-				</table>
+<div id="dashboard">
+	<!-- BEGIN DASHBOARD STATS -->
+	<div class="row-fluid">
+		<div class="span4 responsive" data-tablet="span4" data-desktop="span4">
+			<div class="dashboard-stat green">
+				<div class="visual">
+					<i class="icon-shopping-cart"></i>
+				</div>
+				<div class="details">
+					<div class="number"><%= @transactions.size %></div>
+					<div class="desc">Transactions</div>
+				</div>                
 			</div>
 		</div>
-		<!-- END SAMPLE TABLE PORTLET-->
+		<div class="span4 responsive" data-tablet="span4  fix-offset" data-desktop="span4">
+			<div class="dashboard-stat purple">
+				<div class="visual">
+					<i class="icon-user"></i>
+				</div>
+				<div class="details">
+					<div class="number"><%= @paxes.size %></div>
+					<div class="desc">Total Paxes</div>
+				</div>                
+			</div>
+		</div>
+		<div class="span4 responsive" data-tablet="span4" data-desktop="span4">
+			<div class="dashboard-stat yellow">
+				<div class="visual">
+					<i class="icon-usd"></i>
+				</div>
+				<div class="details">
+					<div class="number"><small><%= @total_price %></small></div>
+					<div class="desc">Total Price</div>
+				</div>               
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="row-fluid">
+		<div class="span8">
+			<!-- BEGIN SAMPLE TABLE PORTLET-->
+			<div class="portlet box red">
+				<div class="portlet-title">
+					<div class="caption"><i class="icon-cogs"></i>Transaction Reminder</div>
+				</div>
+				<div class="portlet-body">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Invoice Number</th>
+								<th>Name</th>
+								<th>Total</th>
+								<th>Due Date</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% no = 1 %>
+							<% @last_transactions.each do |last_transaction| %>
+								<tr>
+									<td><%= no %></td>
+									<td><%= link_to last_transaction.invoice_number, transaction_path(last_transaction) %></td>
+									<td><%= last_transaction.to_name %></td>
+									<td><%= last_transaction.total_price_formatted %></td>
+									<td>
+										<strong>
+											<%= time_span last_transaction.time_limit_formatted %>
+										</strong>
+									</td>
+									<td>
+										<%= link_to transaction_path(last_transaction), class: "btn mini blue-stripe" do %>
+											Show
+										<% end %>
+									</td>
+									<td>
+										<%= link_to to_pdf_transaction_path(last_transaction, format: :pdf), class: "btn mini blue" do %>
+											Download
+											<i class="icon-file"></i>
+										<% end %>
+									</td>
+								</tr>
+								<% no = no+1 %>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- END SAMPLE TABLE PORTLET-->
+		</div>
 	</div>
 </div>
 <% content_for(:title) do %>

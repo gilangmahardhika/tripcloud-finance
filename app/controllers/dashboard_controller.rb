@@ -2,7 +2,10 @@ class DashboardController < ApplicationController
 	before_filter :check_active_user
   def index
   	@title = "Dashboard"
-    @last_transactions = Transaction.where{time_limit >= Time.now}.order{[time_limit.asc]}.limit(5)
+    @last_transactions = Transaction.almost_expired
+    @transactions = Transaction.all
+    @paxes = Pax.all
+    @total_price = Transaction.sum_price_formatted_k("total_price")
   end
 
   def check_active_user

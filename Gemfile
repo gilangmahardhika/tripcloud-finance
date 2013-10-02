@@ -21,10 +21,6 @@ gem "nested_form", :git => 'git@github.com:gilangmahardhika/nested_form.git'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-kaminari-views'
 
-# gem 'delayed_job_active_record'
-# gem 'daemons'
-# gem "delayed_job_web"
-
 
 # Gems used only for assets and not required
 # in production environments by default.

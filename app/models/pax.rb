@@ -1,6 +1,7 @@
 class Pax < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include Modules::PaxViewFormat
+  extend Modules::PaxMethods
 
   # Constants
   TITLES = %w(Mr Mrs Ms Child Infant)

@@ -24,6 +24,12 @@ class Transaction < ActiveRecord::Base
   before_save :sum_nett_to_agent
   after_create :set_invoice_number
 
+  # Delegate
+  delegate :name, :email, :username, :id, to: :admin_user, prefix: true
+
+  # Scope
+  scope :almost_expired, lambda { where{time_limit >= Time.now}.order{[time_limit.asc]}.limit(5) }
+
   def set_invoice_number
     self.invoice_number = "#{self.id}-TC/#{format_date_for_invoice_number}"; self.save!;
   end
