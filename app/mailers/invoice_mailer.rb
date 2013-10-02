@@ -7,7 +7,7 @@ class InvoiceMailer < ActionMailer::Base
 	mail :subject => "Invoice #{invoice_number}",
 		:to      => to,
 		:from    => from,
-		:name	=> "Admin"
+		:name	=> "Admin",
 		:bcc	=> "dandy@tripclouds.com"
   end
   # handle_asynchronously :invoice_email
