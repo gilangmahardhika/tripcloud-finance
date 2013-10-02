@@ -2,15 +2,15 @@ module Modules
 	module TransactionMethods
 		include Modules::TransactionViewFormat
 		def order_last(page = 1)
-			joins({paxes: :departure}, {paxes: :arrival}, {paxes: :airline}, :admin_user).page(page).per(15)
+			includes(:admin_user, paxes: [:departure, :arrival, :airline]).page(page).per(15)
 		end
 
 		def show(id)
-			joins({paxes: :departure}, {paxes: :arrival}, {paxes: :airline}, :admin_user).find(id)
+			includes(:admin_user, paxes: [:departure, :arrival, :airline]).find(id)
 		end
 
 		def all
-			joins({paxes: :departure}, {paxes: :arrival}, {paxes: :airline}, :admin_user).all
+			includes(:admin_user, paxes: [:departure, :arrival, :airline]).all
 		end
 
 		def sum_price(field)
