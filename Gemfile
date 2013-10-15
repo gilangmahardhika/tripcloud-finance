@@ -54,7 +54,8 @@ gem 'rvm-capistrano'
 group :development do
 	gem 'better_errors'
 	gem 'jazz_hands'
-	gem 'rack-mini-profiler'
+	# gem 'rack-mini-profiler'
+  gem 'puma'
 end
 
 group :development, :test do
