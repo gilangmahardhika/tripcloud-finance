@@ -3,6 +3,7 @@ class Transaction < ActiveRecord::Base
   include Modules::TransactionViewFormat
   include Modules::HasAdminUser
   extend Modules::TransactionMethods
+  include ActionController::Rendering
 
   AVAILABLE_DATES = ["time_limit", "issued_date"]
   AVAILABLE_PRICES = ["publish_fare", "nett_to_agent", "total_price"]
@@ -63,5 +64,25 @@ class Transaction < ActiveRecord::Base
     Time.now.strftime("%d/%m/%y")
   end
 
-
+  def create_pdf
+    wicked = WickedPdf.new
+    pdf_file = wicked.pdf_from_string(
+      render_to_string(
+        template:"transactions/to_pdf.html.erb",
+        layout:"layouts/invoice.html.erb",
+        locals:{
+          transaction: self,
+          bank_accounts: BankAccount.order_by_name
+        }
+      ),
+      pdf:"invoice_#{self.invoice_number}",
+      layout:"invoice",
+      dispotition:"attachment"
+    )
+    
+    path = File.join(Rails.root, "public", "files", "#{self.invoice_number}.pdf")
+    file = File.new(path, "wb")
+    file.write pdf_file
+    file.close
+  end
 end

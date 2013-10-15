@@ -4,6 +4,10 @@ class TransactionsController < ApplicationController
 	add_breadcrumb "Transactions", :index_path
 	helper_method :index_path
 
+  before_filter only:[:show, :to_pdf ] do
+    @bank_accounts = BankAccount.order_by_name
+  end
+
   def index
   	@title = "Transactions"
     @transactions = Transaction.order_last(params[:page])
@@ -23,7 +27,6 @@ class TransactionsController < ApplicationController
   end
 
   def show
-    @bank_accounts = BankAccount.order_by_name
   	@title = "Transaction"
   	@transaction = Transaction.show(params[:id])
   	add_breadcrumb "Show", transaction_path(@transaction)
@@ -69,18 +72,38 @@ class TransactionsController < ApplicationController
   end
 
   def to_pdf
-    @bank_accounts = BankAccount.order_by_name
     @transaction = Transaction.show(params[:id])
-    respond_to  do |format|
-      format.html { render layout: "invoice" }
-      format.pdf do
-        render pdf: "invoice_#{@transaction.invoice_number}", layout: "invoice" , disposition: 'attachment', save_to_file: Rails.root.join('pdfs', "#{@transaction.invoice_number}.pdf"), save_only: false
-        save_path = Rails.root.join('pdfs', "#{@transaction.invoice_number}.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end
-      end
-    end
+
+    wicked = WickedPdf.new
+    pdf_file = wicked.pdf_from_string(
+      render_to_string(
+        template:"transactions/to_pdf.html.erb",
+        layout:"layouts/invoice.html.erb",
+        locals:{
+          transaction: @transaction,
+          bank_accounts: @bank_accounts
+        }
+      ),
+      pdf:"invoice_#{@transaction.invoice_number}",
+      layout:"invoice",
+      dispotition:"attachment"
+    )
+
+    path = File.join(Rails.root, "public", "files", "#{Time.now.to_i}.pdf")
+    file = File.open(path, "wb")
+    file.write pdf_file
+    file.close
+    1/0
+    # respond_to  do |format|
+    #   format.html { render layout: "invoice" }
+    #   format.pdf do
+    #     render pdf: "invoice_#{@transaction.invoice_number}", layout: "invoice" , disposition: 'attachment', save_to_file: File.join(Rails.root,'pdfs', "#{@transaction.invoice_number}.pdf"), save_only: false
+    #     save_path = File.join(Rails.root,'pdfs', "#{@transaction.invoice_number}.pdf")
+    #     File.open(save_path, 'wb') do |file|
+    #       file << pdf
+    #     end
+    #   end
+    # end
   end
 
   private
