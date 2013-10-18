@@ -65,10 +65,25 @@ class Transaction < ActiveRecord::Base
     Time.now.strftime("%d-%m-%Y")
   end
 
-  def create_pdf
-    path = File.join Rails.root, "public", "files", "#{self.invoice_number}.pdf"
-    TransactionsController.new.to_pdf(self.id)
+  def to_pdf
+    # create an instance of ActionView, so we can use the render method outside of a controller
+    ActionView::Base.send(:define_method, :protect_against_forgery?) { false }
+    av = ActionView::Base.new
+    av.view_paths = ActionController::Base.view_paths
+    pdf_html = av.render(
+        template:"transactions/to_pdf.html.erb",
+        layout:"layouts/invoice.html.erb",
+        locals:{
+          transaction: self,
+          bank_accounts: BankAccount.order_by_name
+        }
+      )
 
-    File.exists?(path) ? path : nil
+    pdf_file = WickedPdf.new.pdf_from_string(pdf_html)
+
+    path = File.join(Rails.root, "public", "files", "#{self.invoice_number}.pdf")
+    file = File.open(path, "w+")
+    file.write pdf_file.force_encoding("UTF-8")
+    file.close
   end
 end
