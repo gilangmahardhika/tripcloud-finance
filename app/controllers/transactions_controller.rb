@@ -71,8 +71,8 @@ class TransactionsController < ApplicationController
     redirect_to transaction_url(params[:id])
   end
 
-  def to_pdf
-    @transaction = Transaction.show(params[:id])
+  def to_pdf(id)
+    transaction = Transaction.show(id)
 
     wicked = WickedPdf.new
     pdf_file = wicked.pdf_from_string(
@@ -80,20 +80,20 @@ class TransactionsController < ApplicationController
         template:"transactions/to_pdf.html.erb",
         layout:"layouts/invoice.html.erb",
         locals:{
-          transaction: @transaction,
-          bank_accounts: @bank_accounts
+          transaction: transaction,
+          bank_accounts: BankAccount.order_by_name
         }
       ),
-      pdf:"invoice_#{@transaction.invoice_number}",
+      pdf:"invoice_#{transaction.invoice_number}",
       layout:"invoice",
       dispotition:"attachment"
     )
 
-    path = File.join(Rails.root, "public", "files", "#{Time.now.to_i}.pdf")
+    path = File.join(Rails.root, "public", "files", "#{transaction.invoice_number}.pdf")
     file = File.open(path, "wb")
     file.write pdf_file
     file.close
-    1/0
+    
     # respond_to  do |format|
     #   format.html { render layout: "invoice" }
     #   format.pdf do

@@ -23,6 +23,7 @@ class Transaction < ActiveRecord::Base
   # Callbacks
   before_save :sum_total_price
   before_save :sum_nett_to_agent
+  before_save :create_pdf
   after_create :set_invoice_number
 
   # Delegate
@@ -32,7 +33,7 @@ class Transaction < ActiveRecord::Base
   scope :almost_expired, lambda { where{time_limit >= Time.now}.order{[time_limit.asc]}.limit(5) }
 
   def set_invoice_number
-    self.invoice_number = "#{self.id}-TC/#{format_date_for_invoice_number}"; self.save!;
+    self.invoice_number = "#{self.id}-TC_#{format_date_for_invoice_number}"; self.save!;
   end
 
   def sum_total_price
@@ -61,28 +62,13 @@ class Transaction < ActiveRecord::Base
   end
 
   def format_date_for_invoice_number
-    Time.now.strftime("%d/%m/%y")
+    Time.now.strftime("%d-%m-%Y")
   end
 
   def create_pdf
-    wicked = WickedPdf.new
-    pdf_file = wicked.pdf_from_string(
-      render_to_string(
-        template:"transactions/to_pdf.html.erb",
-        layout:"layouts/invoice.html.erb",
-        locals:{
-          transaction: self,
-          bank_accounts: BankAccount.order_by_name
-        }
-      ),
-      pdf:"invoice_#{self.invoice_number}",
-      layout:"invoice",
-      dispotition:"attachment"
-    )
-    
-    path = File.join(Rails.root, "public", "files", "#{self.invoice_number}.pdf")
-    file = File.new(path, "wb")
-    file.write pdf_file
-    file.close
+    path = File.join Rails.root, "public", "files", "#{self.invoice_number}.pdf"
+    TransactionsController.new.to_pdf(self.id)
+
+    File.exists?(path) ? path : nil
   end
 end
