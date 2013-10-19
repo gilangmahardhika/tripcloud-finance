@@ -23,8 +23,11 @@ class Transaction < ActiveRecord::Base
   # Callbacks
   before_save :sum_total_price
   before_save :sum_nett_to_agent
-  before_save :create_pdf
   after_create :set_invoice_number
+
+  before_save do
+    PdfExportWorker.perform_async(self.id)
+  end
 
   # Delegate
   delegate :name, :email, :username, :id, to: :admin_user, prefix: true
@@ -33,7 +36,7 @@ class Transaction < ActiveRecord::Base
   scope :almost_expired, lambda { where{time_limit >= Time.now}.order{[time_limit.asc]}.limit(5) }
 
   def set_invoice_number
-    self.invoice_number = "#{self.id}-TC_#{format_date_for_invoice_number}"; self.save!;
+    self.invoice_number = "#{self.id}-TC/#{format_date_for_invoice_number}"; self.save!;
   end
 
   def sum_total_price
@@ -62,7 +65,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def format_date_for_invoice_number
-    Time.now.strftime("%d-%m-%Y")
+    Time.now.strftime("%d/%m/%Y")
   end
 
   def to_pdf
@@ -81,9 +84,13 @@ class Transaction < ActiveRecord::Base
 
     pdf_file = WickedPdf.new.pdf_from_string(pdf_html)
 
-    path = File.join(Rails.root, "public", "files", "#{self.invoice_number}.pdf")
-    file = File.open(path, "w+")
+    path = File.join(Rails.root, "public", "files", "#{self.pdf_name}")
+    file = File.open(path, "w")
     file.write pdf_file.force_encoding("UTF-8")
     file.close
+  end
+
+  def pdf_name
+    "#{self.invoice_number.gsub("/", "-")}.pdf"
   end
 end
