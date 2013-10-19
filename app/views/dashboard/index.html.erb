@@ -74,7 +74,7 @@
 										<% end %>
 									</td>
 									<td>
-										<%= link_to to_pdf_transaction_path(last_transaction, format: :pdf), class: "btn mini blue" do %>
+										<%= link_to pdf_path(last_transaction), class: "btn mini blue" do %>
 											Download
 											<i class="icon-file"></i>
 										<% end %>
