@@ -34,23 +34,42 @@ class Transaction < ActiveRecord::Base
     self.invoice_number = "#{self.id}-TC/#{format_date_for_invoice_number}"; self.save!;
   end
 
-  def sum_total_price
-    total = 0
-    self.paxes.each do |pax|
-      total = total + pax.publish_fare
+  # def sum_total_price
+  #   total = 0
+  #   self.paxes.each do |pax|
+  #     total = total + pax.publish_fare
+  #   end
+  #   self.total_price = total
+  # end
+
+  AVAILABLE_DATES.each do |date|
+    define_method "#{date}_formatted" do
+      self.send(date).strftime("%d %B %Y")
     end
-    self.total_price = total
   end
 
-  def sum_nett_to_agent
-    total = 0
-    self.paxes.each do |pax|
-      total = total + pax.nett_to_agent
+  AVAILABLE_PRICES.each do |price|
+    define_method "sum_#{price}" do
+      total = 0
+      self.paxes.each do |pax|
+        if price = "total_price"
+          total = total + pax.publish_fare
+        else
+          total = total + pax.send(price)
+        end
+      end
+      self.send(price, total)
     end
-    self.nett_to_agent = total
   end
+
+  # def sum_nett_to_agent
+  #   total = 0
+  #   self.paxes.each do |pax|
+  #     total = total + pax.nett_to_agent
+  #   end
+  #   self.nett_to_agent = total
+  # end
   
-
   def transaction_type_corporate?
   	transaction_type == "corporate"
   end
@@ -62,6 +81,4 @@ class Transaction < ActiveRecord::Base
   def format_date_for_invoice_number
     Time.now.strftime("%d/%m/%y")
   end
-
-
 end

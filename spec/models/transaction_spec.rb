@@ -53,4 +53,14 @@ describe Transaction do
 			transaction.total_price.should eq(36000)
 		end
 	end
+
+	describe "Formatter" do
+		it "Format to rupiah" do
+			rupiah_convert(1000).should == "Rp 1.000"
+		end
+
+		it "Format to IDR" do
+			rupiah_convert(1000).should == "IDR 1.000"
+		end
+	end
 end

@@ -48,10 +48,10 @@
 						<td data-title="Booking Date"><%= transaction.issued_date_formatted %></td>
 						<td data-title="Due Date"><%= transaction.time_limit_formatted %></td>
 						<td data-title="NTA Price">
-							IDR <%= number_with_delimiter(transaction.nett_to_agent, delimiter: ".", separator: ",") %>
+							<%= idr_convert(transaction.total_price) %>
 						</td>
 						<td data-title="Grand Price">
-							IDR <%= number_with_delimiter(transaction.total_price, delimiter: ".", separator: ",") %>
+							<%= idr_convert(transaction.total_price) %>
 						</td>
 						<td data-title="Actions">
 							<%= link_to transaction_path(transaction), class: "btn mini blue-stripe" do %>

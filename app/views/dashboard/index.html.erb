@@ -52,7 +52,7 @@
 								<th>Name</th>
 								<th>Total</th>
 								<th>Due Date</th>
-								<th></th>
+								<th class="hidden-480"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,12 +68,10 @@
 											<%= time_span last_transaction.time_limit_formatted %>
 										</strong>
 									</td>
-									<td>
+									<td class="hidden-480">
 										<%= link_to transaction_path(last_transaction), class: "btn mini blue-stripe" do %>
 											Show
 										<% end %>
-									</td>
-									<td>
 										<%= link_to to_pdf_transaction_path(last_transaction, format: :pdf), class: "btn mini blue" do %>
 											Download
 											<i class="icon-file"></i>

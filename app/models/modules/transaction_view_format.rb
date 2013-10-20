@@ -1,13 +1,13 @@
 module Modules
 	module TransactionViewFormat
 		include ActionView::Helpers::NumberHelper
-		def issued_date_formatted
-		  issued_date.strftime("%d %b %Y")
-		end
+		# def issued_date_formatted
+		#   issued_date.strftime("%d %b %Y")
+		# end
 
-		def time_limit_formatted
-		  time_limit.strftime("%d %b %Y")
-		end
+		# def time_limit_formatted
+		#   time_limit.strftime("%d %b %Y")
+		# end
 
 		def nett_to_agent_formatted
 			format_price(self.nett_to_agent)

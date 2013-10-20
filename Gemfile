@@ -20,6 +20,7 @@ gem "nested_form", :git => 'git@github.com:gilangmahardhika/nested_form.git'
 
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-kaminari-views'
+gem "indonesian_currency_format", "~> 0.0.2"  
 
 
 # Gems used only for assets and not required
@@ -50,6 +51,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'capistrano', '2.12.0'
 gem 'rvm-capistrano'
 
+gem 'rails_best_practices'
 
 group :development do
 	gem 'better_errors'
