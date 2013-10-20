@@ -3,7 +3,7 @@
 		<div class="row-fluid invoice-logo">
 			<div class="span6 invoice-logo-space">LOGO</div>
 			<div class="span6">
-				<p>#<%= @transaction.invoice_number %></p>
+				<p>#<%= transaction.invoice_number %></p>
 			</div>
 		</div>
 		<hr />
@@ -11,19 +11,19 @@
 			<div class="span6">
 				<h4>To:</h4>
 				<ul class="unstyled">
-					<% unless @transaction.company.nil? %>
-						<li><%= @transaction.company %></li>
+					<% unless transaction.company.nil? %>
+						<li><%= transaction.company %></li>
 					<% end %>
-					<li>Attn : <%= @transaction.to_name %></li>
-					<li><%= @transaction.address %></li>
+					<li>Attn : <%= transaction.to_name %></li>
+					<li><%= transaction.address %></li>
 				</ul>
 			</div>
 			<div class="span4 pull-right">
 				<h4>Invoice:</h4>
 				<ul class="unstyled">
-					<li>Invoice No. : <%= @transaction.invoice_number %></li>
-					<li>Date : <%= @transaction.issued_date_formatted %></li>
-					<li>Due Date : <%= @transaction.time_limit_formatted %></li>
+					<li>Invoice No. : <%= transaction.invoice_number %></li>
+					<li>Date : <%= transaction.issued_date_formatted %></li>
+					<li>Due Date : <%= transaction.time_limit_formatted %></li>
 				</ul>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 				</thead>
 				<tbody>
 					<% no = 1 %>
-					<% @transaction.paxes.each do |pax| %>
+					<% transaction.paxes.each do |pax| %>
 						<tr>
 							<td><%= no %></td>
 							<td><%= pax.full_name %></td>
@@ -69,7 +69,7 @@
 			<div class="span6">
 				<div class="well">
 					<p>Please Remit Payment transfer to :</p>
-					<% @bank_accounts.each do |bank_account| %>
+					<% bank_accounts.each do |bank_account| %>
 						<p>
 							<%= bank_account.bank_name %>, <%= bank_account.branch %><br>
 							<strong>Account Number : <%= bank_account.account_number %></strong><br>
@@ -80,19 +80,13 @@
 			</div>
 			<div class="span6 invoice-block">
 				<ul class="unstyled amounts">
-					<li><strong>Sub - Total amount:</strong> IDR <%= number_with_delimiter(@transaction.total_price, delimiter: ".", separator: ",") %></li>
+					<li><strong>Sub - Total amount:</strong> IDR <%= number_with_delimiter(transaction.total_price, delimiter: ".", separator: ",") %></li>
 					<li><strong>Discount:</strong> 0%</li>
 					<li><strong>VAT:</strong> -----</li>
-					<li><strong>Grand Total:</strong> IDR <%= number_with_delimiter(@transaction.total_price, delimiter: ".", separator: ",") %></li>
+					<li><strong>Grand Total:</strong> IDR <%= number_with_delimiter(transaction.total_price, delimiter: ".", separator: ",") %></li>
 				</ul>
 				<br />
-				<a class="btn blue  hidden-print" onclick="javascript:window.print();">Print <i class="icon-print icon-big"></i></a>
-				<%= link_to to_pdf_transaction_path(@transaction, format: :pdf), class: "btn green  hidden-print" do %>
-					Download <i class="icon-white"></i>
-				<% end %>
-				<%= link_to send_email_transaction_path(@transaction), class: "btn green hidden-print" do %>
-				Send Email <i class="icon-white"></i>
-				<% end %>
+				
 			</div>
 		</div>
 	</div>

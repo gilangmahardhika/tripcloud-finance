@@ -3,6 +3,7 @@ class Transaction < ActiveRecord::Base
   include Modules::TransactionViewFormat
   include Modules::HasAdminUser
   extend Modules::TransactionMethods
+  include ActionController::Rendering
 
   AVAILABLE_DATES = ["time_limit", "issued_date"]
   AVAILABLE_PRICES = ["publish_fare", "nett_to_agent", "total_price"]
@@ -23,6 +24,10 @@ class Transaction < ActiveRecord::Base
   before_save :sum_total_price
   before_save :sum_nett_to_agent
   after_create :set_invoice_number
+
+  before_save do
+    PdfExportWorker.perform_async(self.id)
+  end
 
   # Delegate
   delegate :name, :email, :username, :id, to: :admin_user, prefix: true
@@ -79,6 +84,32 @@ class Transaction < ActiveRecord::Base
   end
 
   def format_date_for_invoice_number
-    Time.now.strftime("%d/%m/%y")
+    Time.now.strftime("%d/%m/%Y")
+  end
+
+  def to_pdf
+    # create an instance of ActionView, so we can use the render method outside of a controller
+    ActionView::Base.send(:define_method, :protect_against_forgery?) { false }
+    av = ActionView::Base.new
+    av.view_paths = ActionController::Base.view_paths
+    pdf_html = av.render(
+        template:"transactions/to_pdf.html.erb",
+        layout:"layouts/invoice.html.erb",
+        locals:{
+          transaction: self,
+          bank_accounts: BankAccount.order_by_name
+        }
+      )
+
+    pdf_file = WickedPdf.new.pdf_from_string(pdf_html)
+
+    path = File.join(Rails.root, "public", "files", "#{self.pdf_name}")
+    file = File.open(path, "w")
+    file.write pdf_file.force_encoding("UTF-8")
+    file.close
+  end
+
+  def pdf_name
+    "#{self.invoice_number.gsub("/", "-")}.pdf"
   end
 end

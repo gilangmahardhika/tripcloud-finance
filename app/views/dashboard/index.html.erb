@@ -72,7 +72,10 @@
 										<%= link_to transaction_path(last_transaction), class: "btn mini blue-stripe" do %>
 											Show
 										<% end %>
-										<%= link_to to_pdf_transaction_path(last_transaction, format: :pdf), class: "btn mini blue" do %>
+
+									</td>
+									<td>
+										<%= link_to pdf_path(last_transaction), class: "btn mini blue" do %>
 											Download
 											<i class="icon-file"></i>
 										<% end %>
